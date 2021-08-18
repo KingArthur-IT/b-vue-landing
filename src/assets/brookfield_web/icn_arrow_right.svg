@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="12px" viewBox="0 0 20 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icn_arrow_right</title>
+    <g id="New-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.400000006">
+        <g id="Web" transform="translate(-1387.000000, -2563.000000)" fill="#FFFFFF">
+            <g id="stepper" transform="translate(1266.000000, 2545.000000)">
+                <g id="icn_arrow_right" transform="translate(121.000000, 18.000000)">
+                    <polygon transform="translate(10.000000, 6.000000) rotate(-90.000000) translate(-10.000000, -6.000000) " points="10.4370861 13.1010249 10.5165563 -4 9.29801325 -4 9.27152318 13.1010249 4.95364238 8.32796486 4 9.38213763 9.98675497 16 16 9.35285505 15.0463576 8.29868228"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

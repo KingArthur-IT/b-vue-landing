@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icn_plus</title>
+    <g id="New-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Web" transform="translate(-1300.000000, -10044.000000)" fill="#1B2023">
+            <g id="blocks" transform="translate(0.000000, 7276.000000)">
+                <g id="block" transform="translate(0.000000, 2496.000000)">
+                    <path d="M1311,272 L1310.999,281 L1320,281 L1320,283 L1310.999,283 L1311,292 L1309,292 L1308.999,283 L1300,283 L1300,281 L1308.999,281 L1309,272 L1311,272 Z" id="icn_plus"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
