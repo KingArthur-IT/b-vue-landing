@@ -2,10 +2,8 @@
   <div id="app">
     <Header />
     <main>
-      <Building />
-    <Slider 
-      v-bind:images="Appartmants"
-    />
+      <Building id="Building"/>
+    <Slider id="Apartments"/>
     <TextDescription 
       v-bind:firstText="`Be the first one to live in our beautiful apartment homes that 
             combine natural textures with modern touches.`"
@@ -18,7 +16,7 @@
       v-bind:underlinedText="`Every apartment in our workforce housing lottery is offered at 
             a steep discount and will be rent-stabilized for 35 years!`"
     />
-    <NeighboorsSlider />
+    <NeighboorsSlider id="Neighbornhood" />
     <TextDescription 
       v-bind:firstText="`Live in a unique neighborhood where industrial heritage meets 
             creative spark. Going for a night out? Look to Mottley Kitchenette, 
@@ -32,7 +30,7 @@
       v-bind:underlinedText="`Bankside reflects the unique, energetic feel of the local neighborhood 
             that is unlike anywhere else.`"
     />
-    <Slider />
+    <Slider id="Amenities"/>
     <TextDescription 
       v-bind:firstText="`Relaxation and convenience is an elevator ride away with 
             Bankside’s wonderful package of amenities. Be welcomed home 
@@ -49,11 +47,12 @@
       v-bind:title="`Discounted Rents`"
       v-bind:description="`In order to find out how to apply, you need to register.`"
     />
-    <Availibility/>
+    <Availibility id="Availability"/>
     <CallToAction 
       v-bind:title="`Join our growing inquiry list!`"
       v-bind:description="`Sign up for a chance to win a rent-stabilized discounted apartment.`"
     />
+    <FAQ id="FAQ"/>
     </main>
     <Footer />
   </div>
@@ -68,13 +67,14 @@ import NeighboorsSlider from '@/components/NeighboorsSlider.vue'
 import PackageIncludes from '@/components/PackageIncludes.vue'
 import CallToAction from '@/components/CallToAction.vue'
 import Availibility from '@/components/Availibility.vue'
+import FAQ from '@/components/FAQ.vue'
 import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
     Header, Building, Slider, TextDescription, NeighboorsSlider, 
-    PackageIncludes, CallToAction, Availibility, Footer
+    PackageIncludes, CallToAction, Availibility, FAQ, Footer
   },
   data () {
       return {
@@ -120,6 +120,7 @@ export default {
   min-height: 48px;
   font-family: 'Helvetica Neue Regular';
   cursor: pointer;
+  appearance: none
 }
 .container{
   max-width: 1200px;

@@ -2,36 +2,36 @@
     <div class="slider-wrapper">
     <VueSlickCarousel 
         ref="carousel" 
-        v-if="items.length"
         class="slider"
-        centerMode="true"
+        :centerMode=true
         :slidesToShow=2
+        :draggable=false
     >
         <div class="slide-wrapper">
-            <div class="slide second">
+            <div class="slide slide-second">
                 <img src="@/assets/Neighboors/Bar.jpg" alt="" class="">
-                <h3>Enterteiment Galore</h3>
+                <h3 class="slide__description h3-second">Bar & Grill</h3>
             </div>
         </div>
         <div class="slide-wrapper">
-            <div class="slide third">
+            <div class="slide slide-third">
                 <img src="@/assets/Neighboors/Fitness.jpg" alt="" class="">
-                <h3 class="slide__description">Enterteiment Galore</h3>
+                <h3 class="slide__description h3-third">Fitness</h3>
             </div>
         </div>
         <div class="slide-wrapper">
-            <div class="slide first">
+            <div class="slide slide-first">
                 <img src="@/assets/Neighboors/Galore.jpg" alt="" class="">
-                <h3>Enterteiment Galore</h3>
+                <h3 class="slide__description h3-first">Enterteiment Galore</h3>
             </div>
         </div>
     </VueSlickCarousel>
     <div class="slider-controls-wrapper">
-        <img src="@/assets/brookfield_web/icn_arrow_left.svg" alt="" @click="showPrev" class="slider-controls-wrapper__btn">
+        <img src="@/assets/brookfield_web/icn_arrow_left_bl.svg" alt="" @click="showPrev" class="slider-controls-wrapper__btn">
         <div class="slider-controls-wrapper__text">
-            <span class="slider-controls-wrapper__current">{{slideNumber}}</span> of 15
+            <span class="slider-controls-wrapper__current">{{slideNumber}}</span> of 3
         </div>
-        <img src="@/assets/brookfield_web/icn_arrow_right.svg" alt="" @click="showNext" class="slider-controls-wrapper__btn">
+        <img src="@/assets/brookfield_web/icn_arrow_right_bl.svg" alt="" @click="showNext" class="slider-controls-wrapper__btn">
     </div>    
   </div>
 </template>
@@ -48,27 +48,22 @@
     data () {
       return {
           slideNumber: 1,
-        items: [
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-          },
-        ],
       }
     },
     methods: {
       showPrev() {
         this.$refs.carousel.prev();
-        this.slideNumber--;
+        if (this.slideNumber == 1)
+          this.slideNumber = 3;
+        else
+          this.slideNumber--;
       },
       showNext() {
         this.$refs.carousel.next()
-        this.slideNumber++;
+        if (this.slideNumber == 3)
+          this.slideNumber = 1;
+        else 
+          this.slideNumber++;
       },
     },
   }
@@ -81,12 +76,11 @@
 }
 .slider{
     overflow: hidden;
-    height: 800px;
     background-color: #fff;  
     /*transform: translateX(-10%)     */                                                         
 }
 .slide-wrapper{
-    height: 800px;
+    /*min-height: 800px;*/
     background-color: #fff;  
 }
 .slide{
@@ -97,23 +91,31 @@
     width: 90%;
     margin-left: 24px;
 }
-.first{
+.slide-first{
   background-color: #3B8589;
 }
-.second{
+.slide-second{
   background-color: #FFC869;
 }
-.third{
+.slide-third{
   background-color: #E86F52;
+}
+.h3-first{
+  color: #FFC869;
+}
+.h3-second{
+  color: #3B8589;
+}
+.h3-third{
+  color: #1B2023;
 }
 .slide img{
     margin: 0;
 }
 .slider-controls-wrapper{
     position: absolute;
-    bottom: 16px;
-    right: 16px;
-    background: #fff;
+    bottom: -5%;
+    right: 8%;
     border-radius: 24px;
     padding: 11px 5px;
     width: 140px;
@@ -124,6 +126,8 @@
 }
 .slider-controls-wrapper__btn{
     cursor: pointer;
+    color: #1B2023;
+    width: 20px;
 }
 .slider-controls-wrapper__text{
     display: flex;

@@ -1,5 +1,6 @@
 <template>
-    <div class="container includes">
+    <div class="container ">
+    <div class="includes">
         <div class="includes__title">
             Amenity package includes:
         </div>
@@ -57,6 +58,7 @@
                 </li>
             </ul>
         </div>
+        </div>
     </div>
 </template>
 
@@ -78,7 +80,7 @@ export default {
     display: flex;
     justify-content: space-between;
     padding-top: 24px;
-    margin: 0px 100px 100px 100px;
+    margin: 100px;
 }
 .includes__title{
     font-family: "Helvetica Neue Medium";

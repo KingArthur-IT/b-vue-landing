@@ -2,8 +2,8 @@
   <div class="slider-wrapper">
     <VueSlickCarousel 
         ref="carousel" 
-        v-if="items.length"
         class="slider"
+        :draggable=false
     >
         <img src="@/assets/Apartments/256_Third of Brookfield_MU_2Bdr_D4_cam5.jpg" alt="" class="slide">
         <img src="@/assets/Apartments/256_Third of Brookfield_MU_2Bdr_D4_cam6.jpg" alt="" class="slide">
@@ -15,7 +15,7 @@
     <div class="slider-controls-wrapper">
         <img src="@/assets/brookfield_web/icn_arrow_left.svg" alt="" @click="showPrev" class="slider-controls-wrapper__btn">
         <div class="slider-controls-wrapper__text">
-            <span class="slider-controls-wrapper__current">{{slideNumber}}</span> of 15
+            <span class="slider-controls-wrapper__current">{{slideNumber}}</span> of 6
         </div>
         <img src="@/assets/brookfield_web/icn_arrow_right.svg" alt="" @click="showNext" class="slider-controls-wrapper__btn">
     </div>    
@@ -39,11 +39,17 @@
     methods: {
       showPrev() {
         this.$refs.carousel.prev();
-        this.slideNumber--;
+        if (this.slideNumber == 1)
+          this.slideNumber = 6;
+        else 
+          this.slideNumber--;
       },
       showNext() {
         this.$refs.carousel.next()
-        this.slideNumber++;
+        if (this.slideNumber == 6)
+          this.slideNumber = 1;
+        else 
+          this.slideNumber++;
       },
     },
   }

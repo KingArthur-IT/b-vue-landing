@@ -7,7 +7,7 @@
                 <div class="availible__cost">$2,000</div>
             </div>
             <Table 
-                v-bind:tableData="tableData1"
+                v-bind:tableData="tableStudioData"
             />
         </div>
         <div class="availible__item">
@@ -16,7 +16,9 @@
                 <div class="availible__name">One-Bedroom</div>
                 <div class="availible__cost">$2,000</div>
             </div>
-
+            <Table 
+                v-bind:tableData="tableOneBedroomData"
+            />
         </div>
         <div class="availible__item">
             <img src="@/assets/brookfield_web/plan_3.jpg" alt="" class="availible__plan">
@@ -24,7 +26,9 @@
                 <div class="availible__name">Two-Bedroom</div>
                 <div class="availible__cost">$2,000</div>
             </div>
-
+            <Table 
+                v-bind:tableData="tableTwoBedroomData"
+            />
         </div>
         <div class="availible__item">
             <img src="@/assets/brookfield_web/plan_4.jpg" alt="" class="availible__plan">
@@ -32,7 +36,9 @@
                 <div class="availible__name">Three-Bedroom</div>
                 <div class="availible__cost">$2,000</div>
             </div>
-
+            <Table 
+                v-bind:tableData="tableThreeBedroomData"
+            />
         </div>
     </div>
 </template>
@@ -47,10 +53,29 @@ export default {
   },
   data () {
       return {
-          tableData1: [
+          tableStudioData: [
               {id: 1, size: '1 person', min: '$63,429', max: '$108,660'},
-              {id: 1, size: '2 people', min: '$63,429', max: '$$124,150'},
-          ]
+              {id: 2, size: '2 people', min: '$63,429', max: '$124,150'},
+          ],
+          tableOneBedroomData: [
+              {id: 1, size: '1 person', min: '$78,686', max: '$108,660'},
+              {id: 2, size: '2 people', min: '$78,686', max: '$124,150'},
+              {id: 3, size: '3 people', min: '$78,686', max: '$124,150'},
+          ],
+          tableTwoBedroomData: [
+              {id: 1, size: '2 people', min: '$95,143', max: '$124,150'},
+              {id: 2, size: '3 people', min: '$95,143', max: '$139,620'},
+              {id: 3, size: '4 people', min: '$95,143', max: '$155,090'},
+              {id: 4, size: '5 people', min: '$95,143', max: '$167,570'},
+          ],
+          tableThreeBedroomData: [
+              {id: 1, size: '2 people', min: '$109,715', max: '$139,620'},
+              {id: 2, size: '3 people', min: '$109,715', max: '$155,090'},
+              {id: 3, size: '4 people', min: '$109,715', max: '$167,570'},
+              {id: 4, size: '5 people', min: '$109,715', max: '$124,150'},
+              {id: 5, size: '6 people', min: '$109,715', max: '$179,920'},
+              {id: 6, size: '7 people', min: '$109,715', max: '$192,400'},
+          ],
       }
     },
 }
@@ -68,8 +93,8 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 80px 120px;
-    align-content: center;
-    justify-content: center;
+    align-content: flex-start;
+    justify-content: flex-start;
 }
 .availible__item:nth-child(n+1){
     border-right: 1px solid #3d4e58;
@@ -81,6 +106,7 @@ export default {
     height: 280px;
     width:  280px;
     margin: auto;
+    margin-top: 0;
     margin-bottom: 100px;
 }
 .availible__title{
