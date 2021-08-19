@@ -41,13 +41,25 @@
 }
 table{
     border-collapse: collapse;
+    font-family: 'Helvetica Neue Medium';
+    margin-top: 48px;
+    margin-left: auto;
 }
-tr{
-    
+tr{    
     height: 32px;
-    padding-bottom: 16px;
 }
 th{
     border-bottom: 1px solid #1B2023;
+    width: 345px;
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: normal;
+    padding: 16px 0px;
+}
+th:first-child{
+    text-align: left;
+}
+th:last-child{
+    text-align: right;
 }
 </style>
