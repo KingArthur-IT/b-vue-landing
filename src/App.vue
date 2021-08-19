@@ -114,11 +114,11 @@ export default {
   background-color: #FFC869;
   border-radius: 24px;
   border: none;
-  font-weight: bold;
+  font-weight: normal;
   padding: 10px auto;
   text-align: center;
   min-height: 48px;
-  font-family: 'Helvetica Neue Regular';
+  font-family: 'Helvetica Neue Medium';
   cursor: pointer;
   appearance: none
 }
