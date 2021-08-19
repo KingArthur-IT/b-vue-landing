@@ -1,8 +1,11 @@
 <template>
   <div id="app">
     <Header />
-    <Building />
-    <Slider />
+    <main>
+      <Building />
+    <Slider 
+      v-bind:images="Appartmants"
+    />
     <TextDescription 
       v-bind:firstText="`Be the first one to live in our beautiful apartment homes that 
             combine natural textures with modern touches.`"
@@ -42,8 +45,16 @@
       v-bind:underlinedText="`Bankside is more than just a place to live, it’s a place for living.`"
     />
     <PackageIncludes />
-    <CallToAction />
-    <CallToAction />
+    <CallToAction 
+      v-bind:title="`Discounted Rents`"
+      v-bind:description="`In order to find out how to apply, you need to register.`"
+    />
+    <Availibility/>
+    <CallToAction 
+      v-bind:title="`Join our growing inquiry list!`"
+      v-bind:description="`Sign up for a chance to win a rent-stabilized discounted apartment.`"
+    />
+    </main>
     <Footer />
   </div>
 </template>
@@ -51,19 +62,25 @@
 <script>
 import Header from '@/components/Header.vue'
 import Building from '@/components/Building.vue'
-import Slider from './components/Slider.vue'
-import TextDescription from './components/TextDescription.vue'
-import NeighboorsSlider from './components/NeighboorsSlider.vue'
-import PackageIncludes from './components/PackageIncludes.vue'
-import CallToAction from './components/CallToAction.vue'
-import Footer from './components/Footer.vue'
+import Slider from '@/components/Slider.vue'
+import TextDescription from '@/components/TextDescription.vue'
+import NeighboorsSlider from '@/components/NeighboorsSlider.vue'
+import PackageIncludes from '@/components/PackageIncludes.vue'
+import CallToAction from '@/components/CallToAction.vue'
+import Availibility from '@/components/Availibility.vue'
+import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
     Header, Building, Slider, TextDescription, NeighboorsSlider, 
-    PackageIncludes, CallToAction, Footer
-  }
+    PackageIncludes, CallToAction, Availibility, Footer
+  },
+  data () {
+      return {
+          
+      }
+    },
 }
 </script>
 
@@ -102,6 +119,7 @@ export default {
   text-align: center;
   min-height: 48px;
   font-family: 'Helvetica Neue Regular';
+  cursor: pointer;
 }
 .container{
   max-width: 1200px;

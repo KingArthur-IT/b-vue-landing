@@ -34,17 +34,6 @@
     data () {
       return {
           slideNumber: 1,
-        items: [
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-          },
-        ],
       }
     },
     methods: {
@@ -63,7 +52,6 @@
 <style scoped>
 .slider-wrapper{
     position: relative;
-    margin-bottom: 100px                                                                                                   ;
 }
 .slider{
     overflow: hidden;

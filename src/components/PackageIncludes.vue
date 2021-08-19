@@ -78,7 +78,7 @@ export default {
     display: flex;
     justify-content: space-between;
     padding-top: 24px;
-    margin-bottom: 200px;
+    margin: 0px 100px 100px 100px;
 }
 .includes__title{
     font-family: "Helvetica Neue Medium";
