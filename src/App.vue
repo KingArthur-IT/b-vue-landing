@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <Header />
+    <Header 
+      v-bind:title="`Luxury Mott Haven Apartments`"
+      v-bind:subtitle="`Sign up for a chance to win a discounted apartment at Bankside`"
+      v-bind:navItems="navItems"
+    />
     <main>
       <Building id="Building"
       />
@@ -105,7 +109,15 @@ export default {
       return {
           ApartmentsImages: [Apartments1, Apartments2, Apartments3, Apartments4, Apartments5, Apartments6],
           AmenitiesImages: [Amenities1, Amenities2, Amenities3, Amenities4, Amenities5,
-          Amenities6, Amenities7, Amenities8, Amenities9, Amenities10]
+          Amenities6, Amenities7, Amenities8, Amenities9, Amenities10],
+          navItems: [
+            'Building',
+            'Apartments',
+            'Neighbornhood',
+            'Amenities',
+            'Availability',
+            'FAQ'
+          ],
       }
     },
 }
@@ -162,16 +174,21 @@ export default {
 }
 
 .btn {
-  padding: 10px auto;
-  min-height: 48px;
-  background-color: var(--secondary-color);
-  border-radius: 24px;
-  border: none;
   font-family: 'Helvetica Neue Medium';
   font-weight: normal;
   text-align: center; 
   cursor: pointer;
-  appearance: none
+  appearance: none;
+  padding: 10px auto;
+  min-height: 48px;
+  background-color: var(--secondary-color);
+  border-radius: 24px;
+  border: none;  
 }
-
+@media screen and (max-width: 1300px) {
+    .container {
+      width: 95%;
+      margin: auto;
+    }
+}
 </style>

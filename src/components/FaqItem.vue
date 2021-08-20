@@ -56,6 +56,7 @@ export default {
     font-size: 20px;
     font-weight: 500;
     line-height: 28px;
+    flex-basis: 90%;
 }
 .faq-item__icon-wrapper{
     cursor: pointer;

@@ -27,6 +27,13 @@
         </div>
     </VueSlickCarousel>
     <div class="slider-controls-wrapper">
+      <div class="slider-controls-wrapper__progress">
+        <div class="progress-bg"></div>
+        <div class="progress-active"
+          :style="{width: progressWidth, left: leftPos}"        
+        ></div>
+      </div>
+      <div class="slider-controls-wrapper__btns">
         <span 
           class="icon-icn_arrow_left slider-controls-wrapper__btn" 
           @click="showPrev"
@@ -44,6 +51,7 @@
           @mouseleave="hoverRight"
           v-bind:class="{'icon-icn_arrow_right_hover': isHoverRight, 'icon-icn_arrow_right': !isHoverRight}"
         ></span>
+      </div>
     </div>    
   </div>
 </template>
@@ -60,6 +68,7 @@
     data () {
       return {
           slideNumber: 1,
+          slideCount: 3,
           isHoverLeft: false,
           isHoverRight: false,
       }
@@ -86,6 +95,16 @@
         this.isHoverRight = !this.isHoverRight;       
       }
     },
+    computed: {
+      progressWidth: function(){
+        let w = window.innerWidth * 0.88 * 0.5 / this.slideCount;
+        return w + 'px'
+      },
+      leftPos: function(){
+        let w = window.innerWidth * 0.88 * 0.5 / this.slideCount;
+        return w * (this.slideNumber - 1) + 'px'
+      }
+    }
   }
 </script> 
 
@@ -131,17 +150,39 @@
     margin: 0;
 }
 .slider-controls-wrapper{
-    position: absolute;
-    bottom: -6%;
-    right: 6%;
-    border-radius: 24px;
-    padding: 11px 5px;
+    padding: 11px 0px;
+    width: 88%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;        
+    font-family: "Helvetica Neue Medium"; 
+}
+.slider-controls-wrapper__progress{
+  flex-basis: 50%;
+  position: relative;
+}
+.progress-bg{
+  background-color: var(--text-color);
+  opacity: 0.2;
+  width: 100%;
+  height: 2px;
+}
+.progress-active{
+  background-color: var(--text-color);
+  width: 10%;
+  height: 2px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: left 0.5s linear;
+}
+.slider-controls-wrapper__btns{
     width: 140px;
+    color: var(--text-color);
     display: flex;
     justify-content: space-around;
-    align-items: center;    
-    color: #1B2023;
-    font-family: "Helvetica Neue Medium"; 
+    align-items: center;        
 }
 .slider-controls-wrapper__btn{
     cursor: pointer;
