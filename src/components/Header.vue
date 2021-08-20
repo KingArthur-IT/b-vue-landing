@@ -70,7 +70,7 @@ export default {
     font-size: 15px;
 }
 .nav__item:hover{
-    color: #FFC869;
+    color: var(--secondary-color);;
 }
 .menu__btn{
     width: 136px;
@@ -85,7 +85,7 @@ export default {
 }
 .header__title{
     font-family: 'Helvetica Neue Bold';
-    color: #FFC869;
+    color: var(--secondary-color);;
     font-size: 56px;
     margin-bottom: 24px;
 }

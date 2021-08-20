@@ -91,7 +91,7 @@ export default {
 }
 .includes__wrapper{
     display: flex;
-    flex-basis: 40%;
+    flex-basis: 50%;
     justify-content: space-between;
 }
 .includes__list{

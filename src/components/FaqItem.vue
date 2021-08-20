@@ -2,7 +2,11 @@
     <div class="faq-item">
         <div class="faq-item__head">
             <h4 class="faq-item__title">{{question}}</h4>
-            <img @click="show = !show" class="faq-item__icon" src="@/assets/brookfield_web/icn_plus.svg">
+            <div @click="show = !show" class="faq-item__icon-wrapper">
+                <img class="faq-item__icon" src="@/assets/brookfield_web/minus-solid.svg">
+                <img class="faq-item__icon" v-bind:class="{rotate: !show}"
+                src="@/assets/brookfield_web/minus-solid.svg">
+            </div>            
         </div>                    
         <transition-expand>                    
             <div v-if="show" class="faq-item__text">
@@ -53,8 +57,23 @@ export default {
     font-weight: 500;
     line-height: 28px;
 }
+.faq-item__icon-wrapper{
+    cursor: pointer;
+    width: 22px;
+    height: 20px;
+    position: relative;
+}
 .faq-item__icon{
     cursor: pointer;
+    width: 22px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.5s ease-in;
+}
+.rotate{
+    transform: rotate(-90deg);
 }
 .faq-item__text{
     margin-top: 10px;

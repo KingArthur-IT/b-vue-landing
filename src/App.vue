@@ -2,8 +2,10 @@
   <div id="app">
     <Header />
     <main>
-      <Building id="Building"/>
-    <Slider id="Apartments"/>
+      <Building id="Building"
+      />
+    <Slider id="Apartments"
+      v-bind:img="ApartmentsImages"/>
     <TextDescription 
       v-bind:firstText="`Be the first one to live in our beautiful apartment homes that 
             combine natural textures with modern touches.`"
@@ -30,7 +32,9 @@
       v-bind:underlinedText="`Bankside reflects the unique, energetic feel of the local neighborhood 
             that is unlike anywhere else.`"
     />
-    <Slider id="Amenities"/>
+    <Slider id="Amenities" 
+      v-bind:img="AmenitiesImages"
+    />
     <TextDescription 
       v-bind:firstText="`Relaxation and convenience is an elevator ride away with 
             Bankside’s wonderful package of amenities. Be welcomed home 
@@ -69,6 +73,27 @@ import CallToAction from '@/components/CallToAction.vue'
 import Availibility from '@/components/Availibility.vue'
 import FAQ from '@/components/FAQ.vue'
 import Footer from '@/components/Footer.vue'
+import '@/iconstyle.css'
+
+//images from src need to be imported
+//Apartments
+import Apartments1 from '@/assets/Apartments/256_Third of Brookfield_MU_2Bdr_D4_cam5.jpg'
+import Apartments2 from '@/assets/Apartments/256_Third of Brookfield_MU_2Bdr_D4_cam6.jpg'
+import Apartments3 from '@/assets/Apartments/256_Third of Brookfield_MU_1bdr_D4_cam1.jpg'
+import Apartments4 from '@/assets/Apartments/256_Third of Brookfield_MU_1bdr_D4_cam2.jpg'
+import Apartments5 from '@/assets/Apartments/256_Third of Brookfield_MU_1bdr_D4_cam3.jpg'
+import Apartments6 from '@/assets/Apartments/256_Third of Brookfield_MU_2Bdr_D4_cam4.jpg'
+//Amenities
+import Amenities1 from '@/assets/Amenities/256_Third of Brookfield_Gym_D4_cam4.jpg'
+import Amenities2 from '@/assets/Amenities/256_Third of Brookfield_Gym_D4_cam5.jpg'
+import Amenities3 from '@/assets/Amenities/256_Third of Brookfield_Lobby_cam01_D4.jpg'
+import Amenities4 from '@/assets/Amenities/256_Third of Brookfield_Lobby_cam02_D4.jpg'
+import Amenities5 from '@/assets/Amenities/256_Third of Brookfield_Lobby_cam03_D4.jpg'
+import Amenities6 from '@/assets/Amenities/256_Third of Brookfield_Lounge_D4_cam4.jpg'
+import Amenities7 from '@/assets/Amenities/256_Third of Brookfield_Lounge_D4_cam5.jpg'
+import Amenities8 from '@/assets/Amenities/256_Third of Brookfield_Pool_teracce_D2_cam1.jpg'
+import Amenities9 from '@/assets/Amenities/256_Third of Brookfield_Pool_teracce_D2_cam2.jpg'
+import Amenities10 from '@/assets/Amenities/256_Third of Brookfield_Pool_teracce_D2_cam3.jpg'
 
 export default {
   name: 'App',
@@ -78,7 +103,9 @@ export default {
   },
   data () {
       return {
-          
+          ApartmentsImages: [Apartments1, Apartments2, Apartments3, Apartments4, Apartments5, Apartments6],
+          AmenitiesImages: [Amenities1, Amenities2, Amenities3, Amenities4, Amenities5,
+          Amenities6, Amenities7, Amenities8, Amenities9, Amenities10]
       }
     },
 }
@@ -87,46 +114,64 @@ export default {
 <style>
 @font-face {
     font-family: 'Helvetica Neue Regular';
-    src: url('~@/fonts/Helvetica Neue Roman.ttf') format('truetype');
+    src: url('~@/fonts/Helvetica Neue Roman.ttf') format('truetype'),
+    url('~@/fonts/Helvetica Neue Roman.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    }
+}
 @font-face {
     font-family: 'Helvetica Neue Bold';
-    src: url('~@/fonts/Helvetica Neue Bold.ttf') format('truetype');
+    src: url('~@/fonts/Helvetica Neue Bold.ttf') format('truetype'), 
+    url('~@/fonts/Helvetica Neue Bold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    }
+}
 @font-face {
     font-family: 'Helvetica Neue Medium';
-    src: url('~@/fonts/Helvetica Neue Medium.ttf') format('truetype');
+    src: url('~@/fonts/Helvetica Neue Medium.ttf') format('truetype'),
+    url('~@/fonts/Helvetica Neue Medium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    }
-*{
+}
+@font-face {
+    font-family: 'Icon';
+    src: url('~@/fonts/icomoon.eot');
+    src: url('~@/fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+    url('~@/fonts/icomoon.woff') format('woff'),
+    url('~@/fonts/icomoon.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
 
+:root {
+  --primary-color: red;
+  --secondary-color: #FFC869;
+  --text-color: red;
+}
+
+* {
   scroll-behavior: smooth;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
-.btn{
-  background-color: #FFC869;
-  border-radius: 24px;
-  border: none;
-  font-weight: normal;
-  padding: 10px auto;
-  text-align: center;
-  min-height: 48px;
-  font-family: 'Helvetica Neue Medium';
-  cursor: pointer;
-  appearance: none
-}
-.container{
+
+.container {
   max-width: 1200px;
   margin: auto;
 }
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+
+.btn {
+  padding: 10px auto;
+  min-height: 48px;
+  background-color: var(--secondary-color);
+  border-radius: 24px;
+  border: none;
+  font-family: 'Helvetica Neue Medium';
+  font-weight: normal;
+  text-align: center; 
+  cursor: pointer;
+  appearance: none
 }
+
 </style>

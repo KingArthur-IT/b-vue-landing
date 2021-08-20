@@ -1,23 +1,30 @@
 <template>
-  <div class="slider-wrapper">
+  <div class="slider-wrapper" v-if="img.length > 0">
     <VueSlickCarousel 
         ref="carousel" 
         class="slider"
         :draggable=false
     >
-        <img src="@/assets/Apartments/256_Third of Brookfield_MU_2Bdr_D4_cam5.jpg" alt="" class="slide">
-        <img src="@/assets/Apartments/256_Third of Brookfield_MU_2Bdr_D4_cam6.jpg" alt="" class="slide">
-        <img src="@/assets/Apartments/256_Third of Brookfield_MU_1bdr_D4_cam1.jpg" alt="" class="slide">
-        <img src="@/assets/Apartments/256_Third of Brookfield_MU_1bdr_D4_cam2.jpg" alt="" class="slide">
-        <img src="@/assets/Apartments/256_Third of Brookfield_MU_1bdr_D4_cam3.jpg" alt="" class="slide">
-        <img src="@/assets/Apartments/256_Third of Brookfield_MU_2Bdr_D4_cam4.jpg" alt="" class="slide">
+        <img v-for="image in img" v-bind:key="image" :src="image" alt="" class="slide">
     </VueSlickCarousel>
     <div class="slider-controls-wrapper">
-        <img src="@/assets/brookfield_web/icn_arrow_left.svg" alt="" @click="showPrev" class="slider-controls-wrapper__btn">
+        <span 
+          class="icon-icn_arrow_left slider-controls-wrapper__btn" 
+          @click="showPrev"
+          @mouseover="hoverLeft"
+          @mouseleave="hoverLeft"
+          v-bind:class="{'icon-icn_arrow_left_hover': isHoverLeft, 'icon-icn_arrow_left': !isHoverLeft}"
+        ></span>
         <div class="slider-controls-wrapper__text">
-            <span class="slider-controls-wrapper__current">{{slideNumber}}</span> of 6
+            <span class="slider-controls-wrapper__current">{{slideNumber}}</span> of {{img.length}}
         </div>
-        <img src="@/assets/brookfield_web/icn_arrow_right.svg" alt="" @click="showNext" class="slider-controls-wrapper__btn">
+        <span 
+          class="icon-icn_arrow_right slider-controls-wrapper__btn" 
+          @click="showNext"
+          @mouseover="hoverRight"
+          @mouseleave="hoverRight"
+          v-bind:class="{'icon-icn_arrow_right_hover': isHoverRight, 'icon-icn_arrow_right': !isHoverRight}"
+          ></span>
     </div>    
   </div>
 </template>
@@ -27,30 +34,43 @@
   import 'vue-slick-carousel/dist/vue-slick-carousel.css'
   // optional style for arrows & dots
   import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
- 
+   
   export default {
     name: 'Slider',
     components: { VueSlickCarousel },
     data () {
       return {
           slideNumber: 1,
+          isHoverLeft: false,
+          isHoverRight: false,
       }
     },
     methods: {
       showPrev() {
         this.$refs.carousel.prev();
         if (this.slideNumber == 1)
-          this.slideNumber = 6;
+          this.slideNumber = this.img.length;
         else 
           this.slideNumber--;
       },
       showNext() {
         this.$refs.carousel.next()
-        if (this.slideNumber == 6)
+        if (this.slideNumber == this.img.length)
           this.slideNumber = 1;
         else 
           this.slideNumber++;
       },
+      hoverLeft() {
+        this.isHoverLeft = !this.isHoverLeft;       
+      },
+      hoverRight() {
+        this.isHoverRight = !this.isHoverRight;       
+      }
+    },
+    props: {
+      img: {
+        type: Array
+      }
     },
   }
 </script> 
@@ -78,7 +98,8 @@
     width: 140px;
     display: flex;
     justify-content: space-around;
-    align-items: center;    
+    align-items: center;   
+    font-family: "Helvetica Neue Medium"; 
 }
 .slider-controls-wrapper__btn{
     cursor: pointer;
@@ -92,5 +113,30 @@
     color: #fff;
     font-weight: bold;
     margin-right: 5px;
+}
+.icon-icn_arrow_left:before {
+  content: "\e900";
+  color: rgba(255,255,255,0.4);
+  font-size: 11px;
+  display: block;
+}
+.icon-icn_arrow_left_hover:before {
+  content: "\e900";
+  color: var(--secondary-color);
+  font-size: 11px;
+  display: block;
+}
+
+.icon-icn_arrow_right:before {
+  content: "\e901";
+  display: block;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+}
+.icon-icn_arrow_right_hover:before {
+  content: "\e901";
+  color: var(--secondary-color);
+  font-size: 11px;
+  display: block;
 }
 </style>

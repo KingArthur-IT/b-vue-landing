@@ -6,6 +6,7 @@
         :centerMode=true
         :slidesToShow=2
         :draggable=false
+        :infinite=false
     >
         <div class="slide-wrapper">
             <div class="slide slide-second">
@@ -27,11 +28,23 @@
         </div>
     </VueSlickCarousel>
     <div class="slider-controls-wrapper">
-        <img src="@/assets/brookfield_web/icn_arrow_left_bl.svg" alt="" @click="showPrev" class="slider-controls-wrapper__btn">
+        <span 
+          class="icon-icn_arrow_left slider-controls-wrapper__btn" 
+          @click="showPrev"
+          @mouseover="hoverLeft"
+          @mouseleave="hoverLeft"
+          v-bind:class="{'icon-icn_arrow_left_hover': isHoverLeft, 'icon-icn_arrow_left': !isHoverLeft}"
+        ></span>
         <div class="slider-controls-wrapper__text">
             <span class="slider-controls-wrapper__current">{{slideNumber}}</span> of 3
         </div>
-        <img src="@/assets/brookfield_web/icn_arrow_right_bl.svg" alt="" @click="showNext" class="slider-controls-wrapper__btn">
+        <span 
+          class="icon-icn_arrow_right slider-controls-wrapper__btn" 
+          @click="showNext"
+          @mouseover="hoverRight"
+          @mouseleave="hoverRight"
+          v-bind:class="{'icon-icn_arrow_right_hover': isHoverRight, 'icon-icn_arrow_right': !isHoverRight}"
+        ></span>
     </div>    
   </div>
 </template>
@@ -48,6 +61,8 @@
     data () {
       return {
           slideNumber: 1,
+          isHoverLeft: false,
+          isHoverRight: false,
       }
     },
     methods: {
@@ -65,6 +80,12 @@
         else 
           this.slideNumber++;
       },
+      hoverLeft() {
+        this.isHoverLeft = !this.isHoverLeft;       
+      },
+      hoverRight() {
+        this.isHoverRight = !this.isHoverRight;       
+      }
     },
   }
 </script> 
@@ -76,11 +97,9 @@
 }
 .slider{
     overflow: hidden;
-    background-color: #fff;  
-    /*transform: translateX(-10%)     */                                                         
+    background-color: #fff;                                                        
 }
 .slide-wrapper{
-    /*min-height: 800px;*/
     background-color: #fff;  
 }
 .slide{
@@ -114,8 +133,8 @@
 }
 .slider-controls-wrapper{
     position: absolute;
-    bottom: -5%;
-    right: 8%;
+    bottom: -6%;
+    right: 6%;
     border-radius: 24px;
     padding: 11px 5px;
     width: 140px;
@@ -123,6 +142,7 @@
     justify-content: space-around;
     align-items: center;    
     color: #1B2023;
+    font-family: "Helvetica Neue Medium"; 
 }
 .slider-controls-wrapper__btn{
     cursor: pointer;
@@ -143,5 +163,30 @@
   font-size: 34px;
   font-weight: 500;
   line-height: 46px;
+}
+.icon-icn_arrow_left:before {
+  content: "\e900";
+  color: #1B2023;
+  font-size: 11px;
+  display: block;
+}
+.icon-icn_arrow_left_hover:before {
+  content: "\e900";
+  color: var(--secondary-color);
+  font-size: 11px;
+  display: block;
+}
+
+.icon-icn_arrow_right:before {
+  content: "\e901";
+  display: block;
+  font-size: 11px;
+  color: #1B2023;
+}
+.icon-icn_arrow_right_hover:before {
+  content: "\e901";
+  color: var(--secondary-color);
+  font-size: 11px;
+  display: block;
 }
 </style>

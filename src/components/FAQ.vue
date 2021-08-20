@@ -4,8 +4,8 @@
             <div class="faq__left">
                 <h3 class="faq__title">Frequently Asked Questions</h3>
                 <p class="faq__description">If you have more questions, you can always reach out to us!</p>
-                <a class="faq__contact">email.address@mail.com</a>
-                <a class="faq__contact">718-879-3294</a>
+                <a class="faq__contact" href="mailto:email.address@mail.com">email.address@mail.com</a>
+                <a class="faq__contact" href="tel:718-879-3294">718-879-3294</a>
             </div>
             <div class="faq__info">
                 <FaqItem 
@@ -95,5 +95,6 @@ export default {
 }
 .faq__info{
     flex-basis: 60%;
+    border-bottom: 1px solid #1B2023;
 }
 </style>
