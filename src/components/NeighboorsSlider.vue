@@ -6,7 +6,6 @@
         :centerMode=true
         :slidesToShow=2
         :draggable=false
-        :infinite=false
     >
         <div class="slide-wrapper">
             <div class="slide slide-second">
