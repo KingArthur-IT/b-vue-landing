@@ -69,7 +69,7 @@ export default {
     height: 20px;
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     transition: transform 0.5s ease-in;
 }
 .rotate{

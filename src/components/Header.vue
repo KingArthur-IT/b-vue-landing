@@ -70,7 +70,7 @@ export default {
     font-size: 15px;
 }
 .nav__item:hover{
-    color: var(--secondary-color);;
+    color: var(--secondary-color);
 }
 .menu__btn{
     width: 136px;

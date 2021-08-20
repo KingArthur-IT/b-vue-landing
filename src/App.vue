@@ -144,9 +144,9 @@ export default {
   }
 
 :root {
-  --primary-color: red;
+  --primary-color: #3B8589;
   --secondary-color: #FFC869;
-  --text-color: red;
+  --text-color: #1B2023;
 }
 
 * {
