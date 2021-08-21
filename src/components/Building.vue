@@ -13,7 +13,7 @@
         </p>
 
         <table>
-            <tr v-for="data in tableData" v-bind:key="data">
+            <tr v-for="data in tableData" v-bind:key="data.value">
                 <th>{{data.description}}</th>
                 <th>{{data.value}}</th>
             </tr>

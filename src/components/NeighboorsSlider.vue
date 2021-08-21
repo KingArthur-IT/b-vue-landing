@@ -1,31 +1,19 @@
 <template>
     <div class="slider-wrapper">
-    <VueSlickCarousel 
-        ref="carousel" 
-        class="slider"
-        :centerMode=true
-        :slidesToShow=2
-        :draggable=false
-    >
-        <div class="slide-wrapper">
-            <div class="slide slide-second">
-                <img src="@/assets/Neighboors/Bar.jpg" alt="" class="">
-                <h3 class="slide__description h3-second">Bar & Grill</h3>
+      <div class="slider"
+        :style="{transform: 'translateX(' + -getSlideTransform()*(slideNumber - 1) + '%)'}"
+      >
+        <div class="slide-wrapper"
+          v-for="item in sliderContent" v-bind:key="item.id"  
+        >
+            <div class="slide"
+              :style="{background: item.bgColor, color: item.textColor}"
+            >
+                <img :src="item.src" :alt="item.alt">
+                <h3 class="slide__description">{{item.description}}</h3>
             </div>
         </div>
-        <div class="slide-wrapper">
-            <div class="slide slide-third">
-                <img src="@/assets/Neighboors/Fitness.jpg" alt="" class="">
-                <h3 class="slide__description h3-third">Fitness</h3>
-            </div>
-        </div>
-        <div class="slide-wrapper">
-            <div class="slide slide-first">
-                <img src="@/assets/Neighboors/Galore.jpg" alt="" class="">
-                <h3 class="slide__description h3-first">Enterteiment Galore</h3>
-            </div>
-        </div>
-    </VueSlickCarousel>
+      </div>
     <div class="slider-controls-wrapper">
       <div class="slider-controls-wrapper__progress">
         <div class="progress-bg"></div>
@@ -42,7 +30,7 @@
           v-bind:class="{'icon-icn_arrow_left_hover': isHoverLeft, 'icon-icn_arrow_left': !isHoverLeft}"
         ></span>
         <div class="slider-controls-wrapper__text">
-            <span class="slider-controls-wrapper__current">{{slideNumber}}</span> of 3
+            <span class="slider-controls-wrapper__current">{{slideNumber}}</span> of {{sliderContent.length}}
         </div>
         <span 
           class="icon-icn_arrow_right slider-controls-wrapper__btn" 
@@ -57,33 +45,39 @@
 </template>
 
 <script>
-  import VueSlickCarousel from 'vue-slick-carousel'
-  import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-  // optional style for arrows & dots
-  import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+  import slidePic1 from "@/assets/Neighboors/Galore.jpg";
+  import slidePic2 from "@/assets/Neighboors/Bar.jpg";
+  import slidePic3 from "@/assets/Neighboors/Fitness.jpg";
  
   export default {
     name: 'Slider',
-    components: { VueSlickCarousel },
+    components: {  },
     data () {
       return {
           slideNumber: 1,
-          slideCount: 3,
           isHoverLeft: false,
           isHoverRight: false,
+          sliderContent: [
+            {id: 1, description: 'Enterteiment Galore', src: slidePic1, 
+            bgColor: '#3B8589', textColor: '#FFC869', alt: 'Enterteiment Galore'},
+            {id: 2, description: 'Bar & Grill', src: slidePic2, 
+            bgColor: '#FFC869', textColor: '#3B8589', alt: 'Bar & Grill'},
+            {id: 3, description: 'Fitness', src: slidePic3, 
+            bgColor: '#E86F52', textColor: '#1B2023', alt: 'Fitness'},
+            {id: 4, description: 'Enterteiment Galore', src: slidePic1, 
+            bgColor: '#3B8589', textColor: '#FFC869', alt: 'Enterteiment Galore'},
+          ],
       }
     },
     methods: {
       showPrev() {
-        this.$refs.carousel.prev();
         if (this.slideNumber == 1)
-          this.slideNumber = 3;
+          this.slideNumber = this.sliderContent.length;
         else
           this.slideNumber--;
       },
       showNext() {
-        this.$refs.carousel.next()
-        if (this.slideNumber == 3)
+        if (this.slideNumber == this.sliderContent.length)
           this.slideNumber = 1;
         else 
           this.slideNumber++;
@@ -93,17 +87,23 @@
       },
       hoverRight() {
         this.isHoverRight = !this.isHoverRight;       
+      },
+      getSlideTransform(){
+        if (window.innerWidth < 1000)
+          return 6;
+        else
+          return 4;
       }
     },
     computed: {
       progressWidth: function(){
-        let w = window.innerWidth * 0.88 * 0.5 / this.slideCount;
+        let w = window.innerWidth * 0.78 * 0.5 / this.sliderContent.length;
         return w + 'px'
       },
       leftPos: function(){
-        let w = window.innerWidth * 0.88 * 0.5 / this.slideCount;
+        let w = window.innerWidth * 0.78 * 0.5 / this.sliderContent.length;
         return w * (this.slideNumber - 1) + 'px'
-      }
+      },
     }
   }
 </script> 
@@ -111,48 +111,35 @@
 <style scoped>
 .slider-wrapper{
     position: relative;
-    margin-top: 100px;
+    width: 100%;
+    overflow: hidden;
 }
 .slider{
-    overflow: hidden;
-    background-color: #fff;                                                        
+    width: 1000%;
+    background-color: #fff;   
+    display: flex; 
+    transform: translateX(0%);
+    transition: transform 0.5s linear;                                                    
 }
 .slide-wrapper{
     background-color: #fff;  
+    width: 4%;
+}
+.slide-wrapper:first-child{
+    margin-left: 100px;
 }
 .slide{
     padding: 24px;
     padding-bottom: 144px;
     display: flex;  
     flex-direction: column;
-    width: 90%;
     margin-left: 24px;
 }
-.slide-first{
-  background-color: #3B8589;
-}
-.slide-second{
-  background-color: #FFC869;
-}
-.slide-third{
-  background-color: #E86F52;
-}
-.h3-first{
-  color: #FFC869;
-}
-.h3-second{
-  color: #3B8589;
-}
-.h3-third{
-  color: #1B2023;
-}
-.slide img{
-    margin: 0;
-}
+
 .slider-controls-wrapper{
-    padding: 11px 0px;
-    width: 88%;
-    margin: auto;
+    padding: 24px 0px;
+    width: 79%;
+    margin-left: 124px;
     display: flex;
     justify-content: space-between;
     align-items: center;        
@@ -186,16 +173,17 @@
 }
 .slider-controls-wrapper__btn{
     cursor: pointer;
-    color: #1B2023;
     width: 20px;
 }
 .slider-controls-wrapper__text{
     display: flex;
     font-size: 15px;
+    color: rgba(27, 32, 35, 0.4);
 }
 .slider-controls-wrapper__current{
     font-weight: bold;
     margin-right: 5px;
+    color: var(--text-color);
 }
 .slide__description{
   margin-top: 16px;
@@ -228,5 +216,26 @@
   color: var(--secondary-color);
   font-size: 11px;
   display: block;
+}
+
+@media screen and (max-width: 1000px) {
+  .slide__description{
+    font-size: 29px;
+  }
+  .slide-wrapper{
+    width: 6%;
+  }
+  .slide-wrapper:first-child{
+      margin-left: 0px;
+  }
+  .slider-controls-wrapper{
+      margin-left: 24px;
+  }
+  .slider-controls-wrapper{
+      width: 95%;
+  }
+  .slide{
+      padding-bottom: 64px;
+  }
 }
 </style>
