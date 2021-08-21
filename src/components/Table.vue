@@ -31,7 +31,7 @@ export default {
 <style scoped>
 table{
     border-collapse: collapse;
-    font-family: 'Helvetica Neue Regular';
+    font-family: 'Helvetica Neue Medium';
     margin-top: 48px;
     margin-left: auto;
 }
@@ -39,7 +39,7 @@ tr{
     height: 32px;
 }
 th{
-    border-bottom: 1px solid #1B2023;
+    border-bottom: 1px solid var(--text-color);
     width: 345px;
     font-size: 14px;
     line-height: 32px;

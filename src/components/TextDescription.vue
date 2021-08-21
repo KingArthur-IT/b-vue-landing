@@ -37,12 +37,12 @@ export default {
 
 <style scoped>
 .description{
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 200px;
+    margin-bottom: 200px;
     padding: 0px 100px;
 }
 .description__text{
-    color: #1B2023;
+    color: var(--text-color);
     font-family: "Helvetica Neue Regular";
     font-size: 34px;
     font-weight: 500;
@@ -52,5 +52,15 @@ export default {
 .underline{
     font-family: "Helvetica Neue Medium";
     text-decoration: underline;
+}
+@media screen and (max-width: 1100px) {
+    .description{
+        margin-top: 120px;
+        margin-bottom: 120px;
+        padding: 0px;
+    }
+    .description__text{
+        font-size: 29px;
+    }
 }
 </style>

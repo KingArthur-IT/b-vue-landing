@@ -54,7 +54,7 @@ export default {
       return {
         bgImage, //background image
         isBurgerHover: false, 
-        windowWidth: 0,
+        windowWidth: window.innerWidth,
         BurgerShowBrakepoint: 900,
         isMobileMenuOpened: false,
         menuTranslate: 'translateY(-100%)',
@@ -163,8 +163,8 @@ export default {
     align-items: center;
     text-align: center;
     margin: auto;
-    margin-top: 20%;
-    width: 70%;
+    margin-top: 25%;    
+    width: 90%;
 }
 .header__title{
     font-family: 'Helvetica Neue Bold';
@@ -178,6 +178,7 @@ export default {
     color: rgba(255,255,255,0.8); 
     font-size: 20px;
     margin-bottom: 36px;
+    line-height: 28px;
 }
 .header__btn{
     width: 200px;

@@ -13,21 +13,27 @@
         </p>
 
         <table>
-            <tr>
-                <th>Building Type</th>
-                <th>Luxury</th>
-            </tr>
-            <tr>
-                <th>Affordable Units</th>
-                <th>138</th>
-            </tr>
-            <tr>
-                <th>Occupancy Begins</th>
-                <th>January 2022</th>
+            <tr v-for="data in tableData" v-bind:key="data">
+                <th>{{data.description}}</th>
+                <th>{{data.value}}</th>
             </tr>
         </table>
     </div>
 </template>
+
+<script>
+export default {
+    data () {
+      return {
+          tableData: [
+            {description: 'Building Type', value: 'Luxury'},
+            {description: 'Affordable Units', value: '138'},
+            {description: 'Occupancy Begins', value: 'January 2022'},
+          ],
+      }
+    },
+}
+</script>
 
 <style scoped>
 .building{
@@ -49,7 +55,7 @@ tr{
     height: 32px;
 }
 th{
-    border-bottom: 1px solid #1B2023;
+    border-bottom: 1px solid var(--text-color);
     width: 345px;
     font-size: 20px;
     line-height: 32px;
@@ -61,5 +67,16 @@ th:first-child{
 }
 th:last-child{
     text-align: right;
+}
+@media screen and (max-width: 1100px) {
+    .building{
+        padding: 120px 0px;
+    }
+    .building__text{
+        font-size: 29px;
+    }
+    th{
+        width: 260px;
+    }
 }
 </style>

@@ -6,7 +6,7 @@
       v-bind:navItems="navItems"
     />
     <main>
-      <Building id="Building"
+      <Building :id="navItems[0]"
       />
     <Slider id="Apartments"
       v-bind:img="ApartmentsImages"/>

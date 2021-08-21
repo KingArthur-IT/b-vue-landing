@@ -43,12 +43,18 @@ export default {
 
 <style scoped>
 .faq-item{
-    border-top: 1px solid #1B2023;
+    border-top: 1px solid var(--text-color);
     padding: 26px 0px;
 }
 .faq-item__head{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 .faq-item__title{
@@ -56,6 +62,7 @@ export default {
     font-size: 20px;
     font-weight: 500;
     line-height: 28px;
+    -ms-flex-preferred-size: 90%;
     flex-basis: 90%;
 }
 .faq-item__icon-wrapper{
@@ -71,9 +78,15 @@ export default {
     position: absolute;
     top: 0;
     right: 0;
+    -webkit-transition: -webkit-transform 0.5s ease-in-out;
+    transition: -webkit-transform 0.5s ease-in-out;
+    -o-transition: transform 0.5s ease-in-out;
     transition: transform 0.5s ease-in;
+    transition: transform 0.5s ease-in, -webkit-transform 0.5s ease-in;
 }
 .rotate{
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
     transform: rotate(-90deg);
 }
 .faq-item__text{

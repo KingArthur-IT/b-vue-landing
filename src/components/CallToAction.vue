@@ -30,14 +30,23 @@ export default {
     font-family: "Helvetica Neue Regular";
     min-height: 321px;
     width: 100%;
-    background-color: #3B8589;
+    background-color: var(--primary-color);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 .discount__title{
-    color: #FFC869;
+    color: var(--secondary-color);
     font-size: 48px;
     line-height: 56px;
     font-weight: normal;
@@ -54,6 +63,6 @@ export default {
 }
 .discount__btn{
     width: 240px;
-    color: #1B2023;
+    color: var(--text-color);
 }
 </style>

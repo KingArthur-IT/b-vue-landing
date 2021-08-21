@@ -32,7 +32,6 @@
 <script>
   import VueSlickCarousel from 'vue-slick-carousel'
   import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-  // optional style for arrows & dots
   import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
    
   export default {
@@ -81,23 +80,29 @@
 }
 .slider{
     overflow: hidden;
-    height: 800px;
     object-fit: cover;
+    -o-object-fit: cover;
 }
 .slide{
     height: 800px;
     object-fit: cover;
+    -o-object-fit: cover;
 }
 .slider-controls-wrapper{
     position: absolute;
     bottom: 16px;
     right: 16px;
-    background: #1B2023;
+    background: var(--text-color);
     border-radius: 24px;
     padding: 11px 5px;
     width: 140px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;   
     font-family: "Helvetica Neue Medium"; 
 }
@@ -105,6 +110,8 @@
     cursor: pointer;
 }
 .slider-controls-wrapper__text{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     color: rgba(255,255,255,0.4);
     font-size: 15px;
@@ -138,5 +145,20 @@
   color: var(--secondary-color);
   font-size: 11px;
   display: block;
+}
+@media screen and (max-width: 1200px) {
+  .slide{
+    height: 700px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .slide{
+    height: 600px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .slide{
+    height: 500px;
+  }
 }
 </style>

@@ -10,7 +10,7 @@
     text-align: center;
     color: rgba(255, 255, 255, 0.7);
     width: 100%;
-    background-color: #347478;
+    background-color: var(--primary-color);
     font-family: "Helvetica Neue Regular";
     font-size: 14px;
     line-height: 20px;
