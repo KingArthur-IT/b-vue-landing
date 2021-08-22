@@ -65,4 +65,29 @@ export default {
     width: 240px;
     color: var(--text-color);
 }
+@media screen and (max-width: 600px) {
+    .discount__title{
+        font-size: 34px;
+        line-height: 44px;
+        margin-bottom: 12px;
+    }
+    .discount__text{
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    .discount{
+        min-height: 260px;
+    }
+}
+@media screen and (max-width: 350px) {
+    .discount__title{
+        font-size: 30px;
+        margin-bottom: 8px;
+    }
+    .discount__text{
+        text-align: center;
+        line-height: 20px;
+        width: 90%;
+    }
+}
 </style>

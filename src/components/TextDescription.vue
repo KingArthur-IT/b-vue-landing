@@ -63,4 +63,24 @@ export default {
         font-size: 29px;
     }
 }
+@media screen and (max-width: 600px) {
+    .description{
+        margin-top: 64px;
+        margin-bottom: 64px;
+    }
+    .description__text{
+        font-size: 24px;
+        
+    }
+}
+@media screen and (max-width: 350px) {
+    .description{
+        margin-top: 48px;
+        margin-bottom: 48px;
+    }
+    .description__text{
+        font-size: 21px;
+        margin-bottom: 24px;
+    }
+}
 </style>

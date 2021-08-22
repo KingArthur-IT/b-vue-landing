@@ -168,7 +168,7 @@ export default {
 }
 .header__title{
     font-family: 'Helvetica Neue Bold';
-    color: var(--secondary-color);;
+    color: var(--secondary-color);
     font-size: 56px;
     margin-bottom: 24px;
 }
@@ -194,5 +194,44 @@ export default {
     z-index: 2;
     transform: translateY(-100%);
     transition: transform 0.5s ease-in;
+}
+@media screen and (max-width: 600px) {
+    .header__title{
+        font-size: 50px;
+        margin-bottom: 20px;
+    }
+    .header__subtitle{
+        font-size: 18px;
+        margin-bottom: 24px;
+        line-height: 26px;
+    } 
+    .burger{
+        height: 24px;
+        width: 24px;
+    }
+    .header__hero{  
+        margin-top: 20%;    
+        width: 75%;
+    }
+    .header{
+        background-position: 33%;
+    }
+    .header__subtitle{
+        width: 110%;
+    }
+}
+@media screen and (max-width: 360px) {
+    .header__title{
+        font-size: 44px;
+        margin-bottom: 16px;
+    }
+    .header__subtitle{
+        font-size: 16px;
+        line-height: 22px;
+    } 
+    .header__hero{  
+        margin-top: 20%;    
+        width: 80%;
+    }
 }
 </style>

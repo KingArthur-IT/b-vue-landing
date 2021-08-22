@@ -18,7 +18,7 @@
       <div class="slider-controls-wrapper__progress">
         <div class="progress-bg"></div>
         <div class="progress-active"
-          :style="{width: progressWidth, left: leftPos}"        
+          :style="{width: getProgressWidth() + 'px', left: getLeftPos() + 'px'}"        
         ></div>
       </div>
       <div class="slider-controls-wrapper__btns">
@@ -89,22 +89,86 @@
         this.isHoverRight = !this.isHoverRight;       
       },
       getSlideTransform(){
+        //width of slide in %
+        let rez = 4; 
         if (window.innerWidth < 1000)
-          return 6;
-        else
-          return 4;
+          rez = 6;
+        if (window.innerWidth < 600)
+          rez = 9.75;
+        if (window.innerWidth < 350)
+          rez = 9.6;
+        return rez;
+      },
+      getProgressWidth(){
+        //0.79 - .slider-controls-wrapper width: 79%;
+        //0.5 - .slider-controls-wrapper__progress flex-basis: 50%;
+        let sliderWrapperWidth = 0.79;
+        let progressActiveWidth = 0.5;
+        if (window.innerWidth < 1000){
+          sliderWrapperWidth = 0.95;
+        }        
+        if (window.innerWidth < 600){
+          progressActiveWidth = 0.7;
+        }
+        
+        let w = window.innerWidth * sliderWrapperWidth * progressActiveWidth / this.sliderContent.length;
+        return w
+      },
+      getLeftPos(){
+        //0.79 - .slider-controls-wrapper width: 79%;
+        //0.5 - .slider-controls-wrapper__progress flex-basis: 50%;
+        let sliderWrapperWidth = 0.79;
+        let progressActiveWidth = 0.5;
+        if (window.innerWidth < 1000){
+          sliderWrapperWidth = 0.95;
+        }
+        if (window.innerWidth < 600){
+          progressActiveWidth = 0.7;
+        }
+        let w = window.innerWidth * sliderWrapperWidth * progressActiveWidth / this.sliderContent.length;
+        return w * (this.slideNumber - 1)
+      },
+      resizeEvent(){
+        this.slideNumber = 1;
       }
     },
     computed: {
       progressWidth: function(){
-        let w = window.innerWidth * 0.78 * 0.5 / this.sliderContent.length;
+        //0.79 - .slider-controls-wrapper width: 79%;
+        //0.5 - .slider-controls-wrapper__progress flex-basis: 50%;
+        let sliderWrapperWidth = 0.79;
+        let progressActiveWidth = 0.5;
+        if (window.innerWidth < 1000){
+          sliderWrapperWidth = 0.95;
+        }
+        if (window.innerWidth < 1000){
+          progressActiveWidth = 0.7;
+        }
+        
+        let w = window.innerWidth * sliderWrapperWidth * progressActiveWidth / this.sliderContent.length;
         return w + 'px'
       },
       leftPos: function(){
-        let w = window.innerWidth * 0.78 * 0.5 / this.sliderContent.length;
+        //0.79 - .slider-controls-wrapper width: 79%;
+        //0.5 - .slider-controls-wrapper__progress flex-basis: 50%;
+        let sliderWrapperWidth = 0.79;
+        let progressActiveWidth = 0.5;
+        if (window.innerWidth < 1000){
+          sliderWrapperWidth = 0.95;
+        }
+        if (window.innerWidth < 1000){
+          progressActiveWidth = 0.7;
+        }
+        let w = window.innerWidth * sliderWrapperWidth * progressActiveWidth / this.sliderContent.length;
         return w * (this.slideNumber - 1) + 'px'
       },
-    }
+    },
+    created() {
+      window.addEventListener("resize", this.resizeEvent);
+    },
+    destroyed() {
+      window.removeEventListener("resize", this.resizeEvent);
+    },
   }
 </script> 
 
@@ -117,9 +181,17 @@
 .slider{
     width: 1000%;
     background-color: #fff;   
+    display: -webkit-box;   
+    display: -ms-flexbox;   
     display: flex; 
+    -webkit-transform: translateX(0%); 
+    -ms-transform: translateX(0%); 
     transform: translateX(0%);
-    transition: transform 0.5s linear;                                                    
+    -webkit-transition: -webkit-transform 0.5s linear;
+    transition: -webkit-transform 0.5s linear;
+    -o-transition: transform 0.5s linear;
+    transition: transform 0.5s linear;
+    transition: transform 0.5s linear, -webkit-transform 0.5s linear;                                                    
 }
 .slide-wrapper{
     background-color: #fff;  
@@ -131,7 +203,12 @@
 .slide{
     padding: 24px;
     padding-bottom: 144px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;  
+    -webkit-box-orient: vertical;  
+    -webkit-box-direction: normal;  
+    -ms-flex-direction: column;  
     flex-direction: column;
     margin-left: 24px;
 }
@@ -140,12 +217,19 @@
     padding: 24px 0px;
     width: 79%;
     margin-left: 124px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;        
-    font-family: "Helvetica Neue Medium"; 
+    font-family: "Helvetica Neue Medium";  
 }
 .slider-controls-wrapper__progress{
+  -ms-flex-preferred-size: 50%;
   flex-basis: 50%;
   position: relative;
 }
@@ -162,20 +246,29 @@
   position: absolute;
   top: 0;
   left: 0;
+  -webkit-transition: left 0.5s linear;
+  -o-transition: left 0.5s linear;
   transition: left 0.5s linear;
 }
 .slider-controls-wrapper__btns{
     width: 140px;
     color: var(--text-color);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
-    align-items: center;        
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;  
 }
 .slider-controls-wrapper__btn{
     cursor: pointer;
     width: 20px;
 }
 .slider-controls-wrapper__text{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     font-size: 15px;
     color: rgba(27, 32, 35, 0.4);
@@ -236,6 +329,34 @@
   }
   .slide{
       padding-bottom: 64px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .slide__description{
+    font-size: 24px;
+  }
+  .slide-wrapper{
+    width: 9.75%;
+  }
+  .slide{
+    margin-left: 16px;
+  }
+  .slider-controls-wrapper__progress{
+    -ms-flex-preferred-size: 70%;
+    flex-basis: 70%;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .slide__description{
+    font-size: 21px;
+  }
+  .slide{
+      padding-bottom: 51px;
+  }
+  .slide-wrapper{
+    width: 9.6%;
   }
 }
 </style>

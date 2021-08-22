@@ -55,4 +55,23 @@ th:first-child{
 th:last-child{
     text-align: right;
 }
+@media screen and (max-width: 1100px) {
+    table{
+        margin-top: 36px;
+    }
+}
+@media screen and (max-width: 450px) {
+    table{
+        margin-top: 24px;
+    }
+}
+@media screen and (max-width: 350px) {
+    th{
+        padding-right: 30px;
+        line-height: 18px;
+    }
+    th:last-child{
+        padding-right: 0px;
+    }
+}
 </style>

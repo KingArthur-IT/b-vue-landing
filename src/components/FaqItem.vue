@@ -94,4 +94,25 @@ export default {
     font-size: 14px;
     line-height: 25px;
 }
+@media screen and (max-width: 500px) {
+    .faq-item__title{
+        font-size: 18px;
+        line-height: 25px;
+    }
+    .faq-item__icon{
+        width: 20px;
+        height: 20px;
+    }
+    .faq-item__text{
+        margin-top: 8px;
+        font-size: 14px;
+        line-height: 25px;
+    }
+}
+@media screen and (max-width: 350px) {
+    .faq-item__title{
+        font-size: 16px;
+        line-height: 22px;
+    }
+}
 </style>

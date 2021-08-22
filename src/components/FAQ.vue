@@ -169,4 +169,39 @@ export default {
         flex-basis: 35%;
     }
 }
+@media screen and (max-width: 500px) {
+    .faq__left{
+        flex-basis: 30%;
+        flex-direction: column;
+        width: 55%;
+        margin-bottom: 64px;
+    }
+    .faq__title{    
+        font-size: 34px;
+        line-height: 40px;
+        margin-bottom: 12px;
+    }
+    .faq__desr-group{
+        align-self: flex-start;
+    }
+    .faq__contact:last-child{
+        margin-bottom: 0px;
+    }
+    .faq__description{
+        width: 120%;
+    }
+}
+@media screen and (max-width: 350px) {
+    .faq__title{    
+        font-size: 30px;
+        line-height: 38px;
+    }
+    .faq__left{
+        width: 70%;
+        margin-bottom: 44px;
+    }
+    .faq__hero{
+        padding: 44px 0px 58px;
+    }
+}
 </style>

@@ -47,7 +47,7 @@ export default {
 }
 table{
     border-collapse: collapse;
-    font-family: 'Helvetica Neue Medium';
+    font-family: 'Helvetica Neue Regular';
     margin-top: 48px;
     margin-left: auto;
 }
@@ -67,6 +67,7 @@ th:first-child{
 }
 th:last-child{
     text-align: right;
+    font-family: 'Helvetica Neue Medium';
 }
 @media screen and (max-width: 1100px) {
     .building{
@@ -77,6 +78,38 @@ th:last-child{
     }
     th{
         width: 260px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .building{
+        padding: 80px 0px;
+    }
+    .building__text{
+        font-size: 24px;
+        line-height: 31px;
+    }
+    th{
+        width: 90%;
+        font-size: 18px;
+    }
+    th:last-child{
+        min-width: 150px;
+    }
+}
+@media screen and (max-width: 350px) {
+    .building{
+        padding: 56px 0px;
+    }
+    .building__text{
+        font-size: 21px;
+        line-height: 29px;
+    }
+    th{
+        width: 90%;
+        font-size: 16px;
+    }
+    th:last-child{
+        min-width: 120px;
     }
 }
 </style>

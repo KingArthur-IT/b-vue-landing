@@ -160,4 +160,38 @@ export default {
         border-bottom: none;
     }
 }
+@media screen and (max-width: 600px) {
+    .availible{
+        margin-top: 16px;
+    }
+    .availible__item{
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        margin: 0;
+        padding: 64px 16px;
+    }
+    .availible__plan{
+        height: 200px;
+        width:  200px;
+        margin-bottom: 48px;
+    }
+}
+@media screen and (max-width: 450px) {
+    .availible__title{
+        font-size: 24px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .availible{
+        margin-top: 0px;
+    }
+    .availible__item{
+        padding: 56px 16px;
+    }
+    .availible__plan{
+        height: 140px;
+        width:  140px;
+        margin-bottom: 44px;
+    }
+}
 </style>

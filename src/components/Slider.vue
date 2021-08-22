@@ -161,4 +161,27 @@
     height: 500px;
   }
 }
+@media screen and (max-width: 600px) {
+  .slider-controls-wrapper{
+    right: 37%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .slider-controls-wrapper{
+    right: 35%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .slider-controls-wrapper{
+    right: 32%;
+  }
+}
+@media screen and (max-width: 360px) {
+  .slider-controls-wrapper{
+    right: 28%;
+  }
+  .slide{
+    height: 440px;
+  }
+}
 </style>

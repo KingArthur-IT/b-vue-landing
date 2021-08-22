@@ -15,4 +15,17 @@
     font-size: 14px;
     line-height: 20px;
 }
+@media screen and (max-width: 500px) {
+    .footer{
+        padding: 14px;
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 370px) {
+    .footer{
+        padding: 12px;
+        font-size: 10px;
+        line-height: 14px;
+    }
+}
 </style>

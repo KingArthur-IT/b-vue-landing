@@ -54,7 +54,7 @@ export default {
     -ms-flex-pack: justify;
     justify-content: space-between;
     padding-top: 24px;
-    margin: 100px;
+    margin: -100px 100px 200px 100px;
 }
 .includes__title{
     font-family: "Helvetica Neue Medium";
@@ -85,8 +85,8 @@ export default {
 }
 @media screen and (max-width: 1100px) {
     .includes{
-        margin: 0px;
-        margin-bottom: 120px;
+        padding-top: 12px;
+        margin: -40px 0px 120px 0px;
     }
 }
 @media screen and (max-width: 950px) {
@@ -102,6 +102,26 @@ export default {
     .includes__wrapper{
         -ms-flex-preferred-size: 70%;
         flex-basis: 70%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .includes{
+        margin: 0px 0px 80px 0px;
+        flex-direction: column;
+    }
+    .includes__wrapper{
+        flex-direction: column;
+    }
+    .includes__title{
+        margin-bottom: 12px;
+    }
+    li{
+        margin-left: 20px;
+    }
+}
+@media screen and (max-width: 350px) {
+    .includes{
+        margin-bottom: 56px;
     }
 }
 </style>
