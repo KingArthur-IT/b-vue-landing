@@ -1,8 +1,10 @@
 <template>
-    <div class="discount">
-        <h3 class="discount__title">{{title}}</h3>
-        <p class="discount__text">{{description}}</p>
-        <button class="btn discount__btn">Sign Up</button>
+    <div class="call-to-action">
+        <div class="call-to-action__wrapper">
+            <h3 class="call-to-action__title">{{title}}</h3>
+            <p class="call-to-action__text">{{description}}</p>
+            <button class="btn call-to-action__btn">Sign Up</button>
+        </div>
     </div>
 </template>
 
@@ -26,11 +28,18 @@ export default {
 </script>
 
 <style scoped>
-.discount{
+.call-to-action{
     font-family: "Helvetica Neue Regular";
-    min-height: 321px;
+    min-height: 350px;
     width: 100%;
     background-color: var(--primary-color);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.call-to-action__wrapper{
+    width: 90%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -44,8 +53,9 @@ export default {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    margin: 100px auto;
 }
-.discount__title{
+.call-to-action__title{
     color: var(--secondary-color);
     font-size: 48px;
     line-height: 56px;
@@ -53,39 +63,49 @@ export default {
     margin: 0;
     margin-bottom: 18px;
 }
-.discount__text{
+.call-to-action__text{
     color: rgba(255, 255, 255, 0.7);
     font-size: 14px;
-    line-height: 32px;
+    line-height: 26px;
     font-weight: normal;
     margin: 0;
     margin-bottom: 23px;
 }
-.discount__btn{
+.call-to-action__btn{
     width: 240px;
     color: var(--text-color);
 }
+@media screen and (max-width: 800px) {
+    .call-to-action__wrapper{
+        margin: 100px auto;
+    }
+}
 @media screen and (max-width: 600px) {
-    .discount__title{
+    .call-to-action__wrapper{
+        margin: 50px auto;
+    }
+    .call-to-action__title{
         font-size: 34px;
         line-height: 44px;
         margin-bottom: 12px;
     }
-    .discount__text{
+    .call-to-action__text{
         font-size: 14px;
         margin-bottom: 20px;
     }
-    .discount{
+    .call-to-action{
         min-height: 260px;
     }
 }
 @media screen and (max-width: 350px) {
-    .discount__title{
+    .call-to-action__wrapper{
+        margin: 40px auto;
+    }
+    .call-to-action__title{
         font-size: 30px;
         margin-bottom: 8px;
     }
-    .discount__text{
-        text-align: center;
+    .call-to-action__text{
         line-height: 20px;
         width: 90%;
     }

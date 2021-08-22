@@ -61,6 +61,7 @@ export default {
     }
     .description__text{
         font-size: 29px;
+        line-height: 39px;
     }
 }
 @media screen and (max-width: 600px) {
@@ -70,7 +71,7 @@ export default {
     }
     .description__text{
         font-size: 24px;
-        
+        line-height: 31px;
     }
 }
 @media screen and (max-width: 350px) {
@@ -80,6 +81,7 @@ export default {
     }
     .description__text{
         font-size: 21px;
+        line-height: 29px;
         margin-bottom: 24px;
     }
 }
