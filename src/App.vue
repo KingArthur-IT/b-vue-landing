@@ -4,6 +4,7 @@
       v-bind:title="`Luxury Mott Haven Apartments`"
       v-bind:subtitle="`Sign up for a chance to win a discounted apartment at Bankside`"
       v-bind:navItems="navItems"
+      @showModalEvent="showModal"
     />
     <main>
       <Building :id="navItems[0]"
@@ -63,6 +64,63 @@
     <FAQ id="FAQ"/>
     </main>
     <Footer />
+    <modal name="SignUpModal" :adaptive="true" width="700" height="580">
+      <form class="modal" autocomplete="off">
+        <button class="modal__close" @click="hideModal">
+          <img src="@/assets/brookfield_web/icn_menu_close.svg" alt="X">
+        </button>
+        <div class="modal__hero">
+          <h3 class="modal__title">Sign Up</h3>
+          <div class="modal__inputs">
+            <div class="input-wrapper">
+              <div class="inputInfo inputName">First Name</div>
+              <input type="text" name="FirstName" placeholder="First Name" 
+              v-model="firstName" :class="{error: validation.hasError('firstName')}">
+              <div class="inputInfo validateMessage">{{ validation.firstError('firstName') }}</div>
+            </div>
+            <div class="input-wrapper">
+              <div class="inputInfo inputName">Last Name</div>
+              <input type="text" name="LastName" placeholder="Last Name" 
+              v-model="lastName" :class="{error: validation.hasError('lastName')}">
+              <div class="inputInfo validateMessage">{{ validation.firstError('lastName') }}</div>
+            </div>
+            <div class="input-wrapper">
+              <div class="inputInfo inputName">Email</div>
+              <input type="email" name="Email" placeholder="Email" 
+              v-model="email" :class="{error: validation.hasError('email')}">
+              <div class="inputInfo validateMessage">{{ validation.firstError('email') }}</div>
+            </div>
+            <div class="input-wrapper">
+              <div class="inputInfo inputName">Phone</div>
+              <input type="tel" name="Phone" placeholder="Contact Phone" 
+              v-model="phone" :class="{error: validation.hasError('phone')}">
+              <div class="inputInfo validateMessage">{{ validation.firstError('phone') }}</div>
+            </div>                   
+          </div>
+          <div class="modal__budget">
+            <h4 class="modal__budget-text">
+              Your household income
+            </h4>
+            <div class="modal__radio-group">
+              <input type="radio" name="Income" 
+              value="Under $100k" id="IncomeRadio1"
+              :style="{ background: `url(${RadioDefault})`}"
+              >
+              <label for="IncomeRadio1">Under $100k</label>
+              
+              <input type="radio" name="Income" 
+              value="About $100k" id="IncomeRadio2" cheched>
+              <label for="IncomeRadio2">About $100k</label>
+              
+              <input type="radio" name="Income" 
+              value="Above $100k" id="IncomeRadio3">
+              <label for="IncomeRadio3">Above $100k</label>
+            </div>
+          </div>
+        </div>
+        <button class="modal__signUp" @click="signUp">Sign Up</button>
+      </form>
+    </modal>
   </div>
 </template>
 
@@ -98,12 +156,17 @@ import Amenities7 from '@/assets/Amenities/256_Third of Brookfield_Lounge_D4_cam
 import Amenities8 from '@/assets/Amenities/256_Third of Brookfield_Pool_teracce_D2_cam1.jpg'
 import Amenities9 from '@/assets/Amenities/256_Third of Brookfield_Pool_teracce_D2_cam2.jpg'
 import Amenities10 from '@/assets/Amenities/256_Third of Brookfield_Pool_teracce_D2_cam3.jpg'
+//modal radio img
+import RadioDefault from '@/assets/brookfield_web/icn_radio_default.svg'
+//validator
+import SimpleVueValidation from 'simple-vue-validator';
+const Validator = SimpleVueValidation.Validator;
 
 export default {
   name: 'App',
   components: {
     Header, Building, Slider, TextDescription, NeighboorsSlider, 
-    PackageIncludes, CallToAction, Availibility, FAQ, Footer
+    PackageIncludes, CallToAction, Availibility, FAQ, Footer,
   },
   data () {
       return {
@@ -118,7 +181,42 @@ export default {
             'Availability',
             'FAQ'
           ],
+          RadioDefault,
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: ''
       }
+    },
+  methods: {
+    showModal () {
+      this.$modal.show('SignUpModal');
+    },
+    hideModal () {
+      this.$modal.hide('SignUpModal'); 
+    },
+    signUp(){
+        this.$validate()
+          .then(function (success) {
+            if (success) {
+              alert('Validation succeeded!');
+            }
+          });
+    }
+  },
+  validators: {
+      email: function (value) {
+        return Validator.value(value).required().email();
+      },
+      firstName: function(value) {
+        return Validator.value(value).required().regex('^[A-Za-z]*$', 'Must only contain alphabetic characters.');
+      },
+      lastName: function(value) {
+        return Validator.value(value).required().regex('^[A-Za-z]*$', 'Must only contain alphabetic characters.');
+      },
+      phone: function(value) {
+        return Validator.value(value).required().digit().length(10);
+      },
     },
 }
 </script>
@@ -159,6 +257,7 @@ export default {
   --primary-color: #3B8589;
   --secondary-color: #FFC869;
   --text-color: #1B2023;
+  --secondary-hover-color: #F4A010;
 }
 
 * {
@@ -171,6 +270,10 @@ export default {
 .container {
   max-width: 1200px;
   margin: auto;
+}
+
+button{
+  appearance: none;
 }
 
 .btn {
@@ -190,5 +293,130 @@ export default {
       width: 94%;
       margin: auto;
     }
+}
+
+/*Modal window styles*/
+.vm--overlay {
+  background:rgba(2,21,22, 0.6) !important; 
+}
+.vm--modal{
+  background: var(--primary-color) !important;
+}
+.modal{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.modal__close{
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  align-self: flex-end;
+  padding: 16px 16px 0px;
+}
+.modal__hero{
+  font-family: "Helvetica Neue Regular";
+  font-weight: normal;
+  padding: 0px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.modal__title{
+  color: var(--secondary-color);  
+  font-size: 48px;
+  line-height: 57px;
+  font-weight: normal;
+}
+.modal__inputs{
+  color: #FFFFFF;
+  font-size: 20px;
+  line-height: 28px;
+  padding: 64px 0px 48px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.input-wrapper{
+  position: relative;
+}
+.inputInfo{
+  position: absolute;
+  font-size: 12px;
+  opacity: 0.8;
+}
+.inputName{  
+  top: -20px;
+  
+}
+.validateMessage{
+  bottom: 20px;
+}
+.modal__inputs input{
+  min-height: 42px;
+  min-width: 275px;
+  background: var(--primary-color);
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #fff;
+  color: #fff;
+  margin-bottom: 48px;
+  font-size: 20px;
+}
+.error{
+  border-bottom: 2px solid #C75356 !important;
+}
+.modal__inputs input:active,
+.modal__inputs input:focus{
+  border-bottom: 2px solid var(--secondary-hover-color);
+}
+.modal__inputs input::placeholder{
+  color: rgba(255,255,255,0.5);
+  font-size: 20px;
+  line-height: 28px;
+}
+.modal__budget{
+  color: #FFFFFF;
+  font-family: "Helvetica Neue Medium";
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+}
+.modal__budget-text{
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.modal__radio-group{
+  font-family: "Helvetica Neue Regular";
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: normal;
+}
+.modal__radio-group input[type=radio]{
+  margin-right: 12px;
+}
+.modal__radio-group label{
+  margin-right: 40px;
+}
+.modal__signUp{
+  background: var(--secondary-color);
+  color: var(--text-color);
+  font-family: "Helvetica Neue Medium";
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  padding: 25px auto;
+  outline: none;
+  border: none;
+  min-height: 80px;
+  width: 100%;
+  margin-top: 40px;
+  cursor: pointer;
+}
+.modal__signUp:hover{
+  background: var(--secondary-hover-color);
 }
 </style>

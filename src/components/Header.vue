@@ -26,6 +26,7 @@
                 </nav>
                 <button class="btn menu__btn" 
                     v-if="windowWidth > BurgerShowBrakepoint"
+                    @click="$emit('showModalEvent')"
                 >
                 Sign Up
                 </button>
@@ -48,7 +49,7 @@
             <div class="header__hero">
                 <h1 class="header__title">{{title}}</h1>
                 <h2 class="header__subtitle">{{subtitle}}</h2>
-                <button class="btn header__btn">Sign Up</button>
+                <button class="btn header__btn" @click="$emit('showModalEvent')">Sign Up</button>
             </div>
         </div>
     </header>
@@ -184,7 +185,7 @@ export default {
     align-items: center;
     text-align: center;
     margin: auto;
-    margin-top: 25%;    
+    margin-top: 20%;    
     width: 90%;
 }
 .header__title{
