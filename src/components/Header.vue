@@ -41,7 +41,6 @@
                     <VueCoolBurger                         
                         :color=burgerColor
                         :cross-color=burgerColor
-                        :expanded=burgerCrossed
                         id="vueBurger"
                     />
                 </div>
@@ -166,7 +165,7 @@ export default {
     font-size: 15px;
 }
 .nav__item:hover{
-    color: var(--secondary-color);
+    color: var(--secondary-hover-color);
 }
 .menu__btn{
     width: 136px;

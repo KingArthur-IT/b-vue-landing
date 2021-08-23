@@ -130,6 +130,7 @@
         }
         if (window.innerWidth < 600){
           progressActiveWidth = 0.7;
+          sliderWrapperWidth = 0.92;
         }
         if (window.innerWidth < 500){
           progressActiveWidth = 0.6;

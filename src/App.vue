@@ -66,7 +66,7 @@
     <FAQ :id="navItems[5]"/>
     </main>
     <Footer />
-    <modal name="SignUpModal" :adaptive="true" width="700" height="580">
+    <modal name="SignUpModal" :adaptive="true" :width="getModalWidth()" height="580">
       <form class="modal">
         <button class="modal__close" @click="hideModal">
           <img src="@/assets/brookfield_web/icn_menu_close.svg" alt="X">
@@ -254,6 +254,13 @@ export default {
     changeToggle(el){
       this.modelRadioBtns.checked = el;
     },
+    getModalWidth(){
+      if (window.innerWidth < 650)
+        return window.innerWidth;
+      if (window.innerWidth < 800)
+        return 600;
+      return 700;
+    }
   },
   validators: {
       email: function (value) {
@@ -339,9 +346,18 @@ button{
   border-radius: 24px;
   border: none;  
 }
+.btn:hover{
+    background-color: var(--secondary-hover-color);
+}
 @media screen and (max-width: 1300px) {
     .container {
       width: 94%;
+      margin: auto;
+    }
+}
+@media screen and (max-width: 600px) {
+    .container {
+      width: 92%;
       margin: auto;
     }
 }
