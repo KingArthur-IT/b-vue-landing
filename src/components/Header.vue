@@ -3,7 +3,13 @@
         <div class="mobileMenu"
             :style="{transform: menuTranslate}"      
         >
-            
+            <div class="mobileMenu__wrapper"> 
+                <a class="mobileMenu__item"
+                v-for="navItem in this.navItems" v-bind:key="navItem"
+                :href="`#${navItem}`" 
+                @click="closeMobileMenu"
+                >{{navItem}}</a>
+            </div>
         </div>
         <div class="container"> 
             <div class="menu">
@@ -29,10 +35,13 @@
                     @mouseleave="hover"
                     v-if="windowWidth < BurgerShowBrakepoint"
                     @click="burgerClick"
+                    
                 >
                     <VueCoolBurger                         
                         :color=burgerColor
                         :cross-color=burgerColor
+                        :expanded=burgerCrossed
+                        id="vueBurger"
                     />
                 </div>
             </div>
@@ -58,7 +67,7 @@ export default {
         BurgerShowBrakepoint: 900,
         isMobileMenuOpened: false,
         menuTranslate: 'translateY(-100%)',
-        burgerClickCounter: 0 //one click on burger send two events
+        burgerClickCounter: 0, //one click on burger send two events,
       }
     },
     components: {
@@ -79,7 +88,19 @@ export default {
                     this.menuTranslate = 'translateY(0)';
                 else
                     this.menuTranslate = 'translateY(-100%)';
-            }            
+            //to aviod overflow of menu if it is longer than header
+            let headerH = document.getElementsByClassName('header')[0].getBoundingClientRect().height;
+            let mobileMenuH = document.getElementsByClassName('mobileMenu')[0].getBoundingClientRect().height;
+            if (headerH > mobileMenuH){
+                document.getElementsByClassName('mobileMenu')[0].style.bottom = '0';
+            }
+            else 
+                document.getElementsByClassName('mobileMenu')[0].style.bottom = 'auto';
+            }        
+        },
+        closeMobileMenu(){
+            document.getElementById('vueBurger').click();
+            this.burgerClick();
         }
     },
     computed: {
@@ -188,12 +209,28 @@ export default {
     position: absolute;
     background-color: var(--primary-color);
     top: 0;
-    bottom: 0;
     left: 0;
     right: 0;
+    bottom: auto;
     z-index: 2;
     transform: translateY(-100%);
     transition: transform 0.5s ease-in;
+}
+.mobileMenu__wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20%;
+}
+.mobileMenu__item{
+    font-family: 'Helvetica Neue Bold';
+    color: var(--secondary-color);
+    font-size: 56px;
+    font-weight: bold;
+    line-height: 69px;   
+    text-decoration: none;
+    margin-bottom: 48px;
 }
 @media screen and (max-width: 600px) {
     .header__title{
@@ -219,6 +256,14 @@ export default {
     .header__subtitle{
         width: 110%;
     }
+    .mobileMenu__item{
+        font-size: 48px;
+        line-height: 58px;   
+        margin-bottom: 40px;
+    }
+    .mobileMenu__wrapper{
+        margin-top: 35%;
+    }
 }
 @media screen and (max-width: 360px) {
     .header__title{
@@ -232,6 +277,11 @@ export default {
     .header__hero{  
         margin-top: 20%;    
         width: 80%;
+    }
+    .mobileMenu__item{
+        font-size: 36px;
+        line-height: 52px;   
+        margin-bottom: 16px;
     }
 }
 </style>

@@ -105,10 +105,16 @@
         let sliderWrapperWidth = 0.79;
         let progressActiveWidth = 0.5;
         if (window.innerWidth < 1000){
-          sliderWrapperWidth = 0.95;
+          sliderWrapperWidth = 0.94;
         }        
         if (window.innerWidth < 600){
           progressActiveWidth = 0.7;
+        }
+        if (window.innerWidth < 500){
+          progressActiveWidth = 0.6;
+        }
+        if (window.innerWidth < 370){
+          progressActiveWidth = 0.55;
         }
         
         let w = window.innerWidth * sliderWrapperWidth * progressActiveWidth / this.sliderContent.length;
@@ -120,10 +126,16 @@
         let sliderWrapperWidth = 0.79;
         let progressActiveWidth = 0.5;
         if (window.innerWidth < 1000){
-          sliderWrapperWidth = 0.95;
+          sliderWrapperWidth = 0.94;
         }
         if (window.innerWidth < 600){
           progressActiveWidth = 0.7;
+        }
+        if (window.innerWidth < 500){
+          progressActiveWidth = 0.6;
+        }
+        if (window.innerWidth < 370){
+          progressActiveWidth = 0.55;
         }
         let w = window.innerWidth * sliderWrapperWidth * progressActiveWidth / this.sliderContent.length;
         return w * (this.slideNumber - 1)
@@ -131,37 +143,6 @@
       resizeEvent(){
         this.slideNumber = 1;
       }
-    },
-    computed: {
-      progressWidth: function(){
-        //0.79 - .slider-controls-wrapper width: 79%;
-        //0.5 - .slider-controls-wrapper__progress flex-basis: 50%;
-        let sliderWrapperWidth = 0.79;
-        let progressActiveWidth = 0.5;
-        if (window.innerWidth < 1000){
-          sliderWrapperWidth = 0.95;
-        }
-        if (window.innerWidth < 1000){
-          progressActiveWidth = 0.7;
-        }
-        
-        let w = window.innerWidth * sliderWrapperWidth * progressActiveWidth / this.sliderContent.length;
-        return w + 'px'
-      },
-      leftPos: function(){
-        //0.79 - .slider-controls-wrapper width: 79%;
-        //0.5 - .slider-controls-wrapper__progress flex-basis: 50%;
-        let sliderWrapperWidth = 0.79;
-        let progressActiveWidth = 0.5;
-        if (window.innerWidth < 1000){
-          sliderWrapperWidth = 0.95;
-        }
-        if (window.innerWidth < 1000){
-          progressActiveWidth = 0.7;
-        }
-        let w = window.innerWidth * sliderWrapperWidth * progressActiveWidth / this.sliderContent.length;
-        return w * (this.slideNumber - 1) + 'px'
-      },
     },
     created() {
       window.addEventListener("resize", this.resizeEvent);
@@ -257,7 +238,7 @@
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: distribute;
-    justify-content: space-around;
+    justify-content: space-evenly;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;  
@@ -323,9 +304,7 @@
   }
   .slider-controls-wrapper{
       margin-left: 24px;
-  }
-  .slider-controls-wrapper{
-      width: 95%;
+      width: 94%;
   }
   .slide{
       padding-bottom: 64px;
@@ -342,12 +321,26 @@
   .slide{
     margin-left: 16px;
   }
+  .slider-controls-wrapper{
+    margin-left: 16px;
+  }
   .slider-controls-wrapper__progress{
     -ms-flex-preferred-size: 70%;
     flex-basis: 70%;
   }
 }
-
+@media screen and (max-width: 500px) {
+  .slider-controls-wrapper__progress{
+    -ms-flex-preferred-size: 60%;
+    flex-basis: 60%;
+  }
+}
+@media screen and (max-width: 370px) {
+  .slider-controls-wrapper__progress{
+    -ms-flex-preferred-size: 55%;
+    flex-basis: 55%;
+  }
+}
 @media screen and (max-width: 350px) {
   .slide__description{
     font-size: 21px;
