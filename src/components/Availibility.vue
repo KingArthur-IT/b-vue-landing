@@ -108,7 +108,7 @@ export default {
     -ms-flex-pack: start;
     justify-content: flex-start;
 }
-.availible__item:nth-child(n+1){
+.availible__item:nth-child(2n+1){
     border-right: 1px solid var(--text-color);
 }
 .availible__item:nth-child(1), .availible__item:nth-child(2){

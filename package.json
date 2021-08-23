@@ -9,11 +9,12 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "custom-radio-button": "^0.0.5",
     "simple-vue-validator": "^0.16.0",
     "vue": "^2.6.11",
     "vue-cool-burger": "^1.0.3",
-    "vue-final-modal": "^2.4.1",
     "vue-js-modal": "^2.0.1",
+    "vue-radio-toggle-buttons": "^0.1.0",
     "vue-slick-carousel": "^1.0.6",
     "vue-transition-expand": "^0.1.0"
   },

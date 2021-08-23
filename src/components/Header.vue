@@ -185,7 +185,7 @@ export default {
     align-items: center;
     text-align: center;
     margin: auto;
-    margin-top: 20%;    
+    margin-top: 22%;    
     width: 90%;
 }
 .header__title{

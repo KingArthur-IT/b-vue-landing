@@ -93,7 +93,8 @@ export default {
     margin-bottom: 12px;
 }
 .faq__desr-group{
-
+    display: block;
+    flex-direction: column;
 }
 .faq__description{
     font-size: 14px;
@@ -107,6 +108,7 @@ export default {
     line-height: 20px;
     text-decoration: underline;
     margin-bottom: 12px;
+    display: block;
 }
 .faq__info{
     -ms-flex-preferred-size: 60%;

@@ -3,7 +3,9 @@
         <div class="call-to-action__wrapper">
             <h3 class="call-to-action__title">{{title}}</h3>
             <p class="call-to-action__text">{{description}}</p>
-            <button class="btn call-to-action__btn">Sign Up</button>
+            <button class="btn call-to-action__btn"
+            @click="$emit('showModalEvent')"
+            >Sign Up</button>
         </div>
     </div>
 </template>

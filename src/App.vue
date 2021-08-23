@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    <Header 
+    <Header id="Header"
+      v-bind:navItems="navItems"
       v-bind:title="`Luxury Mott Haven Apartments`"
       v-bind:subtitle="`Sign up for a chance to win a discounted apartment at Bankside`"
-      v-bind:navItems="navItems"
       @showModalEvent="showModal"
     />
     <main>
       <Building :id="navItems[0]"
       />
-    <Slider id="Apartments"
+    <Slider :id="navItems[1]"
       v-bind:img="ApartmentsImages"/>
     <TextDescription 
       v-bind:firstText="`Be the first one to live in our beautiful apartment homes that 
@@ -23,7 +23,7 @@
       v-bind:underlinedText="`Every apartment in our workforce housing lottery is offered at 
             a steep discount and will be rent-stabilized for 35 years!`"
     />
-    <NeighboorsSlider id="Neighbornhood" />
+    <NeighboorsSlider :id="navItems[2]" />
     <TextDescription 
       v-bind:firstText="`Live in a unique neighborhood where industrial heritage meets 
             creative spark. Going for a night out? Look to Mottley Kitchenette, 
@@ -37,7 +37,7 @@
       v-bind:underlinedText="`Bankside reflects the unique, energetic feel of the local neighborhood 
             that is unlike anywhere else.`"
     />
-    <Slider id="Amenities" 
+    <Slider :id="navItems[3]" 
       v-bind:img="AmenitiesImages"
     />
     <TextDescription 
@@ -55,17 +55,19 @@
     <CallToAction 
       v-bind:title="`Discounted Rents`"
       v-bind:description="`In order to find out how to apply, you need to register.`"
+      @showModalEvent="showModal"
     />
-    <Availibility id="Availability"/>
+    <Availibility :id="navItems[4]"/>
     <CallToAction 
       v-bind:title="`Join our growing inquiry list!`"
       v-bind:description="`Sign up for a chance to win a rent-stabilized discounted apartment.`"
+      @showModalEvent="showModal"
     />
-    <FAQ id="FAQ"/>
+    <FAQ :id="navItems[5]"/>
     </main>
     <Footer />
     <modal name="SignUpModal" :adaptive="true" width="700" height="580">
-      <form class="modal" autocomplete="off">
+      <form class="modal">
         <button class="modal__close" @click="hideModal">
           <img src="@/assets/brookfield_web/icn_menu_close.svg" alt="X">
         </button>
@@ -73,27 +75,33 @@
           <h3 class="modal__title">Sign Up</h3>
           <div class="modal__inputs">
             <div class="input-wrapper">
-              <div class="inputInfo inputName">First Name</div>
-              <input type="text" name="FirstName" placeholder="First Name" 
-              v-model="firstName" :class="{error: validation.hasError('firstName')}">
+              <div class="inputInfo inputName" :class="{inputFullSize: inputFocused.firstName}">First Name</div>
+              <input type="text" name="FirstName" :placeholder="inputFocused.firstName ? '' : 'First Name'" 
+              v-model="firstName" 
+              :class="{error: validation.hasError('firstName')}"
+              @focus="inputFocused.firstName = true" @blur="inputFocused.firstName = false"
+              >
               <div class="inputInfo validateMessage">{{ validation.firstError('firstName') }}</div>
             </div>
             <div class="input-wrapper">
-              <div class="inputInfo inputName">Last Name</div>
-              <input type="text" name="LastName" placeholder="Last Name" 
-              v-model="lastName" :class="{error: validation.hasError('lastName')}">
+              <div class="inputInfo inputName" :class="{inputFullSize: inputFocused.lastName}">Last Name</div>
+              <input type="text" name="LastName" :placeholder="inputFocused.lastName ? '' : 'Last Name'" 
+              v-model="lastName" :class="{error: validation.hasError('lastName')}"
+              @focus="inputFocused.lastName = true" @blur="inputFocused.lastName = false">
               <div class="inputInfo validateMessage">{{ validation.firstError('lastName') }}</div>
             </div>
             <div class="input-wrapper">
-              <div class="inputInfo inputName">Email</div>
-              <input type="email" name="Email" placeholder="Email" 
-              v-model="email" :class="{error: validation.hasError('email')}">
+              <div class="inputInfo inputName" :class="{inputFullSize: inputFocused.email}">Email</div>
+              <input type="email" name="Email" :placeholder="inputFocused.email ? '' : 'Email'" 
+              v-model="email" :class="{error: validation.hasError('email')}"
+              @focus="inputFocused.email = true" @blur="inputFocused.email = false">
               <div class="inputInfo validateMessage">{{ validation.firstError('email') }}</div>
             </div>
             <div class="input-wrapper">
-              <div class="inputInfo inputName">Phone</div>
-              <input type="tel" name="Phone" placeholder="Contact Phone" 
-              v-model="phone" :class="{error: validation.hasError('phone')}">
+              <div class="inputInfo inputName" :class="{inputFullSize: inputFocused.phone}">Phone</div>
+              <input type="tel" name="Phone" :placeholder="inputFocused.phone ? '' : 'Contact Phone'"
+              v-model="phone" :class="{error: validation.hasError('phone')}"
+              @focus="inputFocused.phone = true" @blur="inputFocused.phone = false">
               <div class="inputInfo validateMessage">{{ validation.firstError('phone') }}</div>
             </div>                   
           </div>
@@ -102,23 +110,33 @@
               Your household income
             </h4>
             <div class="modal__radio-group">
-              <input type="radio" name="Income" 
-              value="Under $100k" id="IncomeRadio1"
-              :style="{ background: `url(${RadioDefault})`}"
+              <input type="button" id="IncomeRadio1"
+              :style="{ backgroundImage: `url(${getModalRadio(1)})` }"
+              @mouseover="setHover(1)"
+              @mouseleave="delHover()"
+              @click="changeToggle(1)"
               >
               <label for="IncomeRadio1">Under $100k</label>
               
-              <input type="radio" name="Income" 
-              value="About $100k" id="IncomeRadio2" cheched>
+              <input type="button" id="IncomeRadio2"
+              :style="{ backgroundImage: `url(${getModalRadio(2)})` }"
+              @mouseover="setHover(2)"
+              @mouseleave="delHover()"
+              @click="changeToggle(2)"
+              >
               <label for="IncomeRadio2">About $100k</label>
               
-              <input type="radio" name="Income" 
-              value="Above $100k" id="IncomeRadio3">
+              <input type="button" id="IncomeRadio3"
+              :style="{ backgroundImage: `url(${getModalRadio(3)})` }"
+              @mouseover="setHover(3)"
+              @mouseleave="delHover()"
+              @click="changeToggle(3)"
+              >
               <label for="IncomeRadio3">Above $100k</label>
             </div>
           </div>
         </div>
-        <button class="modal__signUp" @click="signUp">Sign Up</button>
+        <button class="modal__signUp" @click="signUp" href="#">Sign Up</button>
       </form>
     </modal>
   </div>
@@ -137,7 +155,7 @@ import FAQ from '@/components/FAQ.vue'
 import Footer from '@/components/Footer.vue'
 import '@/iconstyle.css'
 
-//images from src need to be imported
+//images from local src need to be imported
 //Apartments
 import Apartments1 from '@/assets/Apartments/256_Third of Brookfield_MU_2Bdr_D4_cam5.jpg'
 import Apartments2 from '@/assets/Apartments/256_Third of Brookfield_MU_2Bdr_D4_cam6.jpg'
@@ -156,17 +174,20 @@ import Amenities7 from '@/assets/Amenities/256_Third of Brookfield_Lounge_D4_cam
 import Amenities8 from '@/assets/Amenities/256_Third of Brookfield_Pool_teracce_D2_cam1.jpg'
 import Amenities9 from '@/assets/Amenities/256_Third of Brookfield_Pool_teracce_D2_cam2.jpg'
 import Amenities10 from '@/assets/Amenities/256_Third of Brookfield_Pool_teracce_D2_cam3.jpg'
-//modal radio img
-import RadioDefault from '@/assets/brookfield_web/icn_radio_default.svg'
+
 //validator
 import SimpleVueValidation from 'simple-vue-validator';
 const Validator = SimpleVueValidation.Validator;
+
+import RadioDefauilt from "@/assets/brookfield_web/icn_radio_default.svg"
+import RadioCheched from "@/assets/brookfield_web/icn_radio_checked.svg"
+import RadioHover from "@/assets/brookfield_web/icn_radio_hover.svg"
 
 export default {
   name: 'App',
   components: {
     Header, Building, Slider, TextDescription, NeighboorsSlider, 
-    PackageIncludes, CallToAction, Availibility, FAQ, Footer,
+    PackageIncludes, CallToAction, Availibility, FAQ, Footer, 
   },
   data () {
       return {
@@ -181,28 +202,58 @@ export default {
             'Availability',
             'FAQ'
           ],
-          RadioDefault,
           firstName: '',
           lastName: '',
           email: '',
-          phone: ''
+          phone: '',
+          //data for custom radio btns in modal form
+          RadioDefauilt, RadioCheched, RadioHover,
+          modelRadioBtns: {
+            hover: -1,
+            checked: 2
+          },
+          inputFocused: {
+            firstName: false,
+            lastName: false,
+            email: false,
+            phone: false
+          }
       }
     },
   methods: {
     showModal () {
       this.$modal.show('SignUpModal');
     },
-    hideModal () {
-      this.$modal.hide('SignUpModal'); 
+    hideModal (e) {
+      this.$modal.hide('SignUpModal');
+      e.preventDefault(); 
     },
-    signUp(){
+    signUp(e){
+        e.preventDefault();
         this.$validate()
           .then(function (success) {
             if (success) {
               alert('Validation succeeded!');
             }
           });
-    }
+    },
+    //methods for custom radio btns in modal form
+    getModalRadio(el){
+      if (this.modelRadioBtns.checked == el )
+        return RadioCheched;
+      if (this.modelRadioBtns.hover == el)
+        return RadioHover;
+      return RadioDefauilt;
+    },
+    setHover(el){
+      this.modelRadioBtns.hover = el;
+    },
+    delHover(){
+      this.modelRadioBtns.hover = -1;
+    },
+    changeToggle(el){
+      this.modelRadioBtns.checked = el;
+    },
   },
   validators: {
       email: function (value) {
@@ -338,20 +389,36 @@ button{
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
 .input-wrapper{
   position: relative;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+{
+  background-color: var(--primary-color) !important;
+  border: none;
+  border-bottom: 2px solid var(--secondary-hover-color);
+  -webkit-text-fill-color: rgba(255,255,255,0.5);
+  -webkit-box-shadow: 0 0 0px 0px #000 inset;
+  transition: background-color 1000s ease-in-out 0s;
+}
 .inputInfo{
   position: absolute;
-  font-size: 12px;
+  font-size: 0px;
   opacity: 0.8;
+  transition: font-size 0.1s ease-in;
+}
+.inputFullSize{
+  font-size: 12px;
 }
 .inputName{  
-  top: -20px;
-  
+  top: -20px;  
 }
 .validateMessage{
   bottom: 20px;
+  font-size: 12px;
 }
 .modal__inputs input{
   min-height: 42px;
@@ -395,8 +462,16 @@ button{
   align-items: center;
   font-weight: normal;
 }
-.modal__radio-group input[type=radio]{
-  margin-right: 12px;
+#IncomeRadio1, #IncomeRadio2, #IncomeRadio3
+{
+    width: 20px;
+    border: none;
+    outline: none;
+    height: 20px;
+    background: transparent;
+    margin-right: 12px;
+    cursor: pointer;
+    background-image: url(${RadioDefauilt});
 }
 .modal__radio-group label{
   margin-right: 40px;
