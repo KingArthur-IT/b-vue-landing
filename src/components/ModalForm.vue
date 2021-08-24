@@ -9,7 +9,12 @@
         <!-- Main sign up block-->
         <form class="modal" v-if="isSuccess == false">
             <button class="modal__close" @click="hideModal">
-            <img src="@/assets/brookfield_web/icn_menu_close.svg" alt="X">
+              <span 
+                class="icon-icn_menu_close1" 
+                @mouseover="hoverClose"
+                @mouseleave="hoverClose"
+                v-bind:class="{'icon-icn_menu_close1_hover': isHoverClose, 'icon-icn_menu_close1': !isHoverClose}"
+              ></span>
             </button>
             <div class="modal__hero">
             <h3 class="modal__title">Sign Up</h3>
@@ -85,7 +90,12 @@
         <!-- Success text block-->
         <div class="modal" v-if="isSuccess == true">
              <button class="modal__close" @click="hideModal">
-                    <img src="@/assets/brookfield_web/icn_menu_close.svg" alt="X">
+                <span 
+                  class="icon-icn_menu_close1" 
+                  @mouseover="hoverClose"
+                  @mouseleave="hoverClose"
+                  v-bind:class="{'icon-icn_menu_close1_hover': isHoverClose, 'icon-icn_menu_close1': !isHoverClose}"
+                ></span>
             </button>
             <div class="modal__hero">
                 <h3 class="modal__title">Success</h3>
@@ -98,7 +108,12 @@
         <!-- Error block-->
         <div class="modal" v-if="isSuccess == undefined">
              <button class="modal__close" @click="hideModal">
-                    <img src="@/assets/brookfield_web/icn_menu_close.svg" alt="X">
+                <span 
+                  class="icon-icn_menu_close1" 
+                  @mouseover="hoverClose"
+                  @mouseleave="hoverClose"
+                  v-bind:class="{'icon-icn_menu_close1_hover': isHoverClose, 'icon-icn_menu_close1': !isHoverClose}"
+                ></span>
             </button>
             <div class="modal__hero">
                 <h3 class="modal__title">Oppps</h3>
@@ -144,7 +159,8 @@ export default {
           phone: false
         },
         //is form is success
-        isSuccess: false
+        isSuccess: false,
+        isHoverClose: false,
       }
     },
     props: {
@@ -227,6 +243,9 @@ export default {
     changeToggle(el){
       this.modelRadioBtns.checked = el;
     },
+    hoverClose() {
+        this.isHoverClose = !this.isHoverClose;       
+      },
   },
   validators: {
       email: function (value) {
@@ -442,6 +461,15 @@ input:-webkit-autofill:focus
     line-height: 28px;
     margin-top: 48px;
     margin-bottom: 20px;
+}
+.icon-icn_menu_close1:before {
+  content: "\e902";
+  color: #fff;
+  font-size: 20px;
+}
+.icon-icn_menu_close1_hover:before {
+  content: "\e902";
+  color: var(--secondary-color);
 }
 @media screen and (max-width: 800px) {
     .modal__hero{
