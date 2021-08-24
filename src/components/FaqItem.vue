@@ -1,15 +1,15 @@
 <template>
     <div class="faq-item">
-        <div class="faq-item__head">
+        <div class="faq-item__head" @click="itemClick">
             <h4 class="faq-item__title">{{question}}</h4>
-            <div @click="show = !show" class="faq-item__icon-wrapper">
+            <div class="faq-item__icon-wrapper">
                 <img class="faq-item__icon" src="@/assets/brookfield_web/minus-solid.svg">
-                <img class="faq-item__icon" v-bind:class="{rotate: !show}"
+                <img class="faq-item__icon" v-bind:class="{rotate: !isExpand}"
                 src="@/assets/brookfield_web/minus-solid.svg">
             </div>            
         </div>                    
         <transition-expand>                    
-            <div v-if="show" class="faq-item__text">
+            <div v-if="isExpand" class="faq-item__text">
                 {{answer}}
             </div>                    
         </transition-expand>
@@ -27,7 +27,7 @@ export default {
     },
     data () {
         return {
-            show: false,
+            isExpand: false,
         }
     },
     props: {
@@ -36,6 +36,27 @@ export default {
         },
         answer: {
             type: String
+        },
+        id: {
+            type: Number
+        },
+        expandedItem: {
+            type: Number
+        }
+    },
+    methods: {
+        itemClick(){
+            this.isExpand = !this.isExpand;
+            if (this.isExpand){
+                this.$emit('setNewExpandItem', {id: this.id});
+            }
+        }
+    },
+    watch: {
+        expandedItem: function(){
+            if (this.expandedItem != this.id){
+                this.isExpand = false;
+            }
         }
     }
 }
@@ -56,6 +77,7 @@ export default {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    cursor: pointer;
 }
 .faq-item__title{
     font-family: "Helvetica Neue Medium";

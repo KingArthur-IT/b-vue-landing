@@ -14,31 +14,49 @@
                     v-bind:question="`Is there a difference between the market-rate and affordable apartments?`"
                     v-bind:answer="`The affordable apartments are comparable in every way to the market-rate units, with the same spacious 
                     layout, high-end finishing and access to amazing amenities and services!`"
+                    v-bind:id="1"
+                    v-bind:expandedItem="expandedItem"
+                    @setNewExpandItem="setNewExpandItemEvent"
                 />
                 <FaqItem 
                     v-bind:question="`How do I know if I qualify for an affordable apartment?`"
                     v-bind:answer="`Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dignissimos quod illo nulla quos. 
                     Debitis, pariatur. Cum, possimus voluptate iste fuga minus expedita dicta saepe, quo tempore delectus est? Fuga!`"
+                    v-bind:id="2"
+                    v-bind:expandedItem="expandedItem"
+                    @setNewExpandItem="setNewExpandItemEvent"
                 />
                 <FaqItem 
                     v-bind:question="`How do I apply for an affordable apartment?`"
                     v-bind:answer="`Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dignissimos quod illo nulla quos. 
                     Debitis, pariatur. Cum, possimus voluptate iste fuga minus expedita dicta saepe, quo tempore delectus est? Fuga!`"
+                    v-bind:id="3"
+                    v-bind:expandedItem="expandedItem"
+                    @setNewExpandItem="setNewExpandItemEvent"
                 />
                 <FaqItem 
                     v-bind:question="`How does the lottery work? What are my chances of being selected for an apartment?`"
                     v-bind:answer="`Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dignissimos quod illo nulla quos. 
                     Debitis, pariatur. Cum, possimus voluptate iste fuga minus expedita dicta saepe, quo tempore delectus est? Fuga!`"
+                    v-bind:id="4"
+                    v-bind:expandedItem="expandedItem"
+                    @setNewExpandItem="setNewExpandItemEvent"
                 />
                 <FaqItem 
                     v-bind:question="`How long does the process take if I am selected? Isn't the process much more complicated than a market-rate unit?`"
                     v-bind:answer="`Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dignissimos quod illo nulla quos. 
                     Debitis, pariatur. Cum, possimus voluptate iste fuga minus expedita dicta saepe, quo tempore delectus est? Fuga!`"
+                    v-bind:id="5"
+                    v-bind:expandedItem="expandedItem"
+                    @setNewExpandItem="setNewExpandItemEvent"
                 />
                 <FaqItem 
                     v-bind:question="`Does rent stabilized mean my rent can never be increased?`"
                     v-bind:answer="`Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dignissimos quod illo nulla quos. 
                     Debitis, pariatur. Cum, possimus voluptate iste fuga minus expedita dicta saepe, quo tempore delectus est? Fuga!`"
+                    v-bind:id="6"
+                    v-bind:expandedItem="expandedItem"
+                    @setNewExpandItem="setNewExpandItemEvent"
                 />
             </div>
         </div>
@@ -55,6 +73,12 @@ export default {
     },
     data () {
         return {
+            expandedItem: -1
+        }
+    },
+    methods: {
+        setNewExpandItemEvent(param){
+            this.expandedItem = param.id;
         }
     },
 }
