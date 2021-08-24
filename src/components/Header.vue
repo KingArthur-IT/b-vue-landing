@@ -35,8 +35,7 @@
                     @mouseover="hover"
                     @mouseleave="hover"
                     v-if="windowWidth < BurgerShowBrakepoint"
-                    @click="burgerClick"
-                    
+                    @click="burgerClick"                    
                 >
                     <VueCoolBurger                         
                         :color=burgerColor
@@ -48,14 +47,18 @@
             <div class="header__hero">
                 <h1 class="header__title">{{title}}</h1>
                 <h2 class="header__subtitle">{{subtitle}}</h2>
-                <button class="btn header__btn" @click="$emit('showModalEvent')">Sign Up</button>
+                <button class="btn header__btn" 
+                @click="$emit('showModalEvent')"
+                >Sign Up</button>
             </div>
         </div>
     </header>
 </template>
 
 <script>
+//bg image for header
 import bgImage from "@/assets/brookfield_web/Main_bg.jpg"
+//burger
 import VueCoolBurger from "vue-cool-burger";
 
 export default {
@@ -69,6 +72,11 @@ export default {
         menuTranslate: 'translateY(-100%)',
         burgerClickCounter: 0, //one click on burger send two events,
       }
+    },    
+    props: {
+        title: String,
+        subtitle: String,
+        navItems: Array
     },
     components: {
         VueCoolBurger
@@ -101,7 +109,7 @@ export default {
         closeMobileMenu(){
             document.getElementById('vueBurger').click();
             this.burgerClick();
-        }
+        },
     },
     computed: {
         burgerColor: function(){
@@ -117,11 +125,6 @@ export default {
     destroyed() {
         window.removeEventListener("resize", this.resizeEvent);
     },
-    props: {
-        title: String,
-        subtitle: String,
-        navItems: Array
-    }
 }
 </script>
 
@@ -213,13 +216,26 @@ export default {
     right: 0;
     bottom: auto;
     z-index: 2;
+    -webkit-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
     transform: translateY(-100%);
+    -webkit-transition: -webkit-transform 0.5s ease-in;
+    transition: -webkit-transform 0.5s ease-in;
+    -o-transition: transform 0.5s ease-in;
     transition: transform 0.5s ease-in;
+    transition: transform 0.5s ease-in, -webkit-transform 0.5s ease-in;
 }
 .mobileMenu__wrapper{
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     margin-top: 20%;
 }
@@ -247,7 +263,7 @@ export default {
         width: 24px;
     }
     .header__hero{  
-        margin-top: 20%;    
+        margin-top: 25%;    
         width: 75%;
     }
     .header{

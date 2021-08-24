@@ -66,79 +66,10 @@
     <FAQ :id="navItems[5]"/>
     </main>
     <Footer />
-    <modal name="SignUpModal" :adaptive="true" :width="getModalWidth()" height="580">
-      <form class="modal">
-        <button class="modal__close" @click="hideModal">
-          <img src="@/assets/brookfield_web/icn_menu_close.svg" alt="X">
-        </button>
-        <div class="modal__hero">
-          <h3 class="modal__title">Sign Up</h3>
-          <div class="modal__inputs">
-            <div class="input-wrapper">
-              <div class="inputInfo inputName" :class="{inputFullSize: inputFocused.firstName}">First Name</div>
-              <input type="text" name="FirstName" :placeholder="inputFocused.firstName ? '' : 'First Name'" 
-              v-model="firstName" 
-              :class="{error: validation.hasError('firstName')}"
-              @focus="inputFocused.firstName = true" @blur="inputFocused.firstName = false"
-              >
-              <div class="inputInfo validateMessage">{{ validation.firstError('firstName') }}</div>
-            </div>
-            <div class="input-wrapper">
-              <div class="inputInfo inputName" :class="{inputFullSize: inputFocused.lastName}">Last Name</div>
-              <input type="text" name="LastName" :placeholder="inputFocused.lastName ? '' : 'Last Name'" 
-              v-model="lastName" :class="{error: validation.hasError('lastName')}"
-              @focus="inputFocused.lastName = true" @blur="inputFocused.lastName = false">
-              <div class="inputInfo validateMessage">{{ validation.firstError('lastName') }}</div>
-            </div>
-            <div class="input-wrapper">
-              <div class="inputInfo inputName" :class="{inputFullSize: inputFocused.email}">Email</div>
-              <input type="email" name="Email" :placeholder="inputFocused.email ? '' : 'Email'" 
-              v-model="email" :class="{error: validation.hasError('email')}"
-              @focus="inputFocused.email = true" @blur="inputFocused.email = false">
-              <div class="inputInfo validateMessage">{{ validation.firstError('email') }}</div>
-            </div>
-            <div class="input-wrapper">
-              <div class="inputInfo inputName" :class="{inputFullSize: inputFocused.phone}">Phone</div>
-              <input type="tel" name="Phone" :placeholder="inputFocused.phone ? '' : 'Contact Phone'"
-              v-model="phone" :class="{error: validation.hasError('phone')}"
-              @focus="inputFocused.phone = true" @blur="inputFocused.phone = false">
-              <div class="inputInfo validateMessage">{{ validation.firstError('phone') }}</div>
-            </div>                   
-          </div>
-          <div class="modal__budget">
-            <h4 class="modal__budget-text">
-              Your household income
-            </h4>
-            <div class="modal__radio-group">
-              <input type="button" id="IncomeRadio1"
-              :style="{ backgroundImage: `url(${getModalRadio(1)})` }"
-              @mouseover="setHover(1)"
-              @mouseleave="delHover()"
-              @click="changeToggle(1)"
-              >
-              <label for="IncomeRadio1">Under $100k</label>
-              
-              <input type="button" id="IncomeRadio2"
-              :style="{ backgroundImage: `url(${getModalRadio(2)})` }"
-              @mouseover="setHover(2)"
-              @mouseleave="delHover()"
-              @click="changeToggle(2)"
-              >
-              <label for="IncomeRadio2">About $100k</label>
-              
-              <input type="button" id="IncomeRadio3"
-              :style="{ backgroundImage: `url(${getModalRadio(3)})` }"
-              @mouseover="setHover(3)"
-              @mouseleave="delHover()"
-              @click="changeToggle(3)"
-              >
-              <label for="IncomeRadio3">Above $100k</label>
-            </div>
-          </div>
-        </div>
-        <button class="modal__signUp" @click="signUp" href="#">Sign Up</button>
-      </form>
-    </modal>
+    <ModalForm 
+      v-bind:isShow="isMainModalShow"
+      @closeModal="closeModalEvent"
+    />
   </div>
 </template>
 
@@ -153,6 +84,7 @@ import CallToAction from '@/components/CallToAction.vue'
 import Availibility from '@/components/Availibility.vue'
 import FAQ from '@/components/FAQ.vue'
 import Footer from '@/components/Footer.vue'
+import ModalForm from '@/components/ModalForm.vue'
 import '@/iconstyle.css'
 
 //images from local src need to be imported
@@ -175,25 +107,19 @@ import Amenities8 from '@/assets/Amenities/256_Third of Brookfield_Pool_teracce_
 import Amenities9 from '@/assets/Amenities/256_Third of Brookfield_Pool_teracce_D2_cam2.jpg'
 import Amenities10 from '@/assets/Amenities/256_Third of Brookfield_Pool_teracce_D2_cam3.jpg'
 
-//validator
-import SimpleVueValidation from 'simple-vue-validator';
-const Validator = SimpleVueValidation.Validator;
-
-import RadioDefauilt from "@/assets/brookfield_web/icn_radio_default.svg"
-import RadioCheched from "@/assets/brookfield_web/icn_radio_checked.svg"
-import RadioHover from "@/assets/brookfield_web/icn_radio_hover.svg"
-
 export default {
   name: 'App',
   components: {
     Header, Building, Slider, TextDescription, NeighboorsSlider, 
-    PackageIncludes, CallToAction, Availibility, FAQ, Footer, 
+    PackageIncludes, CallToAction, Availibility, FAQ, Footer, ModalForm
   },
   data () {
       return {
+          //images for sliders components
           ApartmentsImages: [Apartments1, Apartments2, Apartments3, Apartments4, Apartments5, Apartments6],
           AmenitiesImages: [Amenities1, Amenities2, Amenities3, Amenities4, Amenities5,
           Amenities6, Amenities7, Amenities8, Amenities9, Amenities10],
+          //items for navigation
           navItems: [
             'Building',
             'Apartments',
@@ -202,80 +128,18 @@ export default {
             'Availability',
             'FAQ'
           ],
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          //data for custom radio btns in modal form
-          RadioDefauilt, RadioCheched, RadioHover,
-          modelRadioBtns: {
-            hover: -1,
-            checked: 2
-          },
-          inputFocused: {
-            firstName: false,
-            lastName: false,
-            email: false,
-            phone: false
-          }
+          //to show modal form
+          isMainModalShow: false
       }
     },
   methods: {
     showModal () {
-      this.$modal.show('SignUpModal');
+      this.isMainModalShow = true;
     },
-    hideModal (e) {
-      this.$modal.hide('SignUpModal');
-      e.preventDefault(); 
-    },
-    signUp(e){
-        e.preventDefault();
-        this.$validate()
-          .then(function (success) {
-            if (success) {
-              alert('Validation succeeded!');
-            }
-          });
-    },
-    //methods for custom radio btns in modal form
-    getModalRadio(el){
-      if (this.modelRadioBtns.checked == el )
-        return RadioCheched;
-      if (this.modelRadioBtns.hover == el)
-        return RadioHover;
-      return RadioDefauilt;
-    },
-    setHover(el){
-      this.modelRadioBtns.hover = el;
-    },
-    delHover(){
-      this.modelRadioBtns.hover = -1;
-    },
-    changeToggle(el){
-      this.modelRadioBtns.checked = el;
-    },
-    getModalWidth(){
-      if (window.innerWidth < 650)
-        return window.innerWidth;
-      if (window.innerWidth < 800)
-        return 600;
-      return 700;
+    closeModalEvent(){
+      this.isMainModalShow = false;
     }
   },
-  validators: {
-      email: function (value) {
-        return Validator.value(value).required().email();
-      },
-      firstName: function(value) {
-        return Validator.value(value).required().regex('^[A-Za-z]*$', 'Must only contain alphabetic characters.');
-      },
-      lastName: function(value) {
-        return Validator.value(value).required().regex('^[A-Za-z]*$', 'Must only contain alphabetic characters.');
-      },
-      phone: function(value) {
-        return Validator.value(value).required().digit().length(10);
-      },
-    },
 }
 </script>
 
@@ -368,146 +232,5 @@ button{
 }
 .vm--modal{
   background: var(--primary-color) !important;
-}
-.modal{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-.modal__close{
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  align-self: flex-end;
-  padding: 16px 16px 0px;
-}
-.modal__hero{
-  font-family: "Helvetica Neue Regular";
-  font-weight: normal;
-  padding: 0px 48px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.modal__title{
-  color: var(--secondary-color);  
-  font-size: 48px;
-  line-height: 57px;
-  font-weight: normal;
-}
-.modal__inputs{
-  color: #FFFFFF;
-  font-size: 20px;
-  line-height: 28px;
-  padding: 64px 0px 48px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.input-wrapper{
-  position: relative;
-}
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus
-{
-  background-color: var(--primary-color) !important;
-  border: none;
-  border-bottom: 2px solid var(--secondary-hover-color);
-  -webkit-text-fill-color: rgba(255,255,255,0.5);
-  -webkit-box-shadow: 0 0 0px 0px #000 inset;
-  transition: background-color 1000s ease-in-out 0s;
-}
-.inputInfo{
-  position: absolute;
-  font-size: 0px;
-  opacity: 0.8;
-  transition: font-size 0.1s ease-in;
-}
-.inputFullSize{
-  font-size: 12px;
-}
-.inputName{  
-  top: -20px;  
-}
-.validateMessage{
-  bottom: 20px;
-  font-size: 12px;
-}
-.modal__inputs input{
-  min-height: 42px;
-  min-width: 275px;
-  background: var(--primary-color);
-  border: none;
-  outline: none;
-  border-bottom: 2px solid #fff;
-  color: #fff;
-  margin-bottom: 48px;
-  font-size: 20px;
-}
-.error{
-  border-bottom: 2px solid #C75356 !important;
-}
-.modal__inputs input:active,
-.modal__inputs input:focus{
-  border-bottom: 2px solid var(--secondary-hover-color);
-}
-.modal__inputs input::placeholder{
-  color: rgba(255,255,255,0.5);
-  font-size: 20px;
-  line-height: 28px;
-}
-.modal__budget{
-  color: #FFFFFF;
-  font-family: "Helvetica Neue Medium";
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 28px;
-}
-.modal__budget-text{
-  font-weight: 500;
-  margin-bottom: 20px;
-}
-.modal__radio-group{
-  font-family: "Helvetica Neue Regular";
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: normal;
-}
-#IncomeRadio1, #IncomeRadio2, #IncomeRadio3
-{
-    width: 20px;
-    border: none;
-    outline: none;
-    height: 20px;
-    background: transparent;
-    margin-right: 12px;
-    cursor: pointer;
-    background-image: url(${RadioDefauilt});
-}
-.modal__radio-group label{
-  margin-right: 40px;
-}
-.modal__signUp{
-  background: var(--secondary-color);
-  color: var(--text-color);
-  font-family: "Helvetica Neue Medium";
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 28px;
-  padding: 25px auto;
-  outline: none;
-  border: none;
-  min-height: 80px;
-  width: 100%;
-  margin-top: 40px;
-  cursor: pointer;
-}
-.modal__signUp:hover{
-  background: var(--secondary-hover-color);
 }
 </style>
