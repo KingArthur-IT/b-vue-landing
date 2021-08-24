@@ -69,10 +69,9 @@ export default {
               {id: 4, size: '5 people', min: '$95,143', max: '$167,570'},
           ],
           tableThreeBedroomData: [
-              {id: 1, size: '2 people', min: '$109,715', max: '$139,620'},
-              {id: 2, size: '3 people', min: '$109,715', max: '$155,090'},
-              {id: 3, size: '4 people', min: '$109,715', max: '$167,570'},
-              {id: 4, size: '5 people', min: '$109,715', max: '$124,150'},
+              {id: 1, size: '3 people', min: '$109,715', max: '$139,620'},
+              {id: 2, size: '4 people', min: '$109,715', max: '$155,090'},
+              {id: 3, size: '5 people', min: '$109,715', max: '$167,570'},
               {id: 5, size: '6 people', min: '$109,715', max: '$179,920'},
               {id: 6, size: '7 people', min: '$109,715', max: '$192,400'},
           ],
