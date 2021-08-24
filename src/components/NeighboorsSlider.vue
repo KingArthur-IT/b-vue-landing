@@ -235,7 +235,7 @@
     margin-left: 24px;
 }
 .slide img{
-  aspect-ratio: 1.0;
+  aspect-ratio: 1.5;
 }
 
 .slider-controls-wrapper{
