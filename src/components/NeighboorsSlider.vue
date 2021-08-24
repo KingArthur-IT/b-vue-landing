@@ -45,9 +45,23 @@
 </template>
 
 <script>
-  import slidePic1 from "@/assets/Neighboors/Galore.jpg";
-  import slidePic2 from "@/assets/Neighboors/Bar.jpg";
-  import slidePic3 from "@/assets/Neighboors/Fitness.jpg";
+  import slidePic1 from "@/assets/Neighboors/1-min.jpg";
+  import slidePic2 from "@/assets/Neighboors/2-min.jpg";
+  import slidePic3 from "@/assets/Neighboors/3-min.jpg";
+  import slidePic4 from "@/assets/Neighboors/4-min.jpg";
+  import slidePic5 from "@/assets/Neighboors/5-min.jpg";
+  import slidePic6 from "@/assets/Neighboors/6-min.jpg";
+  import slidePic7 from "@/assets/Neighboors/7-min.jpg";
+  import slidePic8 from "@/assets/Neighboors/8-min.jpg";
+  import slidePic9 from "@/assets/Neighboors/9-min.jpg";
+  import slidePic11 from "@/assets/Neighboors/11-min.jpg";
+  import slidePic12 from "@/assets/Neighboors/12-min.jpg";
+  import slidePic13 from "@/assets/Neighboors/13-min.jpg";
+  import slidePic14 from "@/assets/Neighboors/14-min.jpg";
+  import slidePic16 from "@/assets/Neighboors/16-min.jpg";
+  import slidePic17 from "@/assets/Neighboors/17-min.jpg";
+  import slidePic20 from "@/assets/Neighboors/20-min.jpg";
+  import slidePic21 from "@/assets/Neighboors/21-min.jpg";
  
   export default {
     name: 'Slider',
@@ -64,8 +78,34 @@
             bgColor: '#FFC869', textColor: '#3B8589', alt: 'Bar & Grill'},
             {id: 3, description: 'Fitness', src: slidePic3, 
             bgColor: '#E86F52', textColor: '#1B2023', alt: 'Fitness'},
-            {id: 4, description: 'Enterteiment Galore', src: slidePic1, 
+            {id: 4, description: 'Enterteiment Galore', src: slidePic4, 
             bgColor: '#3B8589', textColor: '#FFC869', alt: 'Enterteiment Galore'},
+            {id: 5, description: 'Enterteiment Galore', src: slidePic5, 
+            bgColor: '#FFC869', textColor: '#FFC869', alt: 'Enterteiment Galore'},
+            {id: 6, description: 'Enterteiment Galore', src: slidePic6, 
+            bgColor: '#E86F52', textColor: '#FFC869', alt: 'Enterteiment Galore'},
+            {id: 7, description: 'Enterteiment Galore', src: slidePic7, 
+            bgColor: '#3B8589', textColor: '#FFC869', alt: 'Enterteiment Galore'},
+            {id: 8, description: 'Enterteiment Galore', src: slidePic8, 
+            bgColor: '#FFC869', textColor: '#FFC869', alt: 'Enterteiment Galore'},
+            {id: 9, description: 'Enterteiment Galore', src: slidePic9, 
+            bgColor: '#E86F52', textColor: '#FFC869', alt: 'Enterteiment Galore'},
+            {id: 10, description: 'Enterteiment Galore', src: slidePic11, 
+            bgColor: '#3B8589', textColor: '#FFC869', alt: 'Enterteiment Galore'},
+            {id: 11, description: 'Enterteiment Galore', src: slidePic12, 
+            bgColor: '#FFC869', textColor: '#FFC869', alt: 'Enterteiment Galore'},
+            {id: 12, description: 'Enterteiment Galore', src: slidePic13, 
+            bgColor: '#E86F52', textColor: '#FFC869', alt: 'Enterteiment Galore'},
+            {id: 13, description: 'Enterteiment Galore', src: slidePic14, 
+            bgColor: '#3B8589', textColor: '#FFC869', alt: 'Enterteiment Galore'},
+            {id: 14, description: 'Enterteiment Galore', src: slidePic16, 
+            bgColor: '#FFC869', textColor: '#FFC869', alt: 'Enterteiment Galore'},
+            {id: 15, description: 'Enterteiment Galore', src: slidePic17, 
+            bgColor: '#E86F52', textColor: '#FFC869', alt: 'Enterteiment Galore'},
+            {id: 16, description: 'Enterteiment Galore', src: slidePic20, 
+            bgColor: '#3B8589', textColor: '#FFC869', alt: 'Enterteiment Galore'},
+            {id: 17, description: 'Enterteiment Galore', src: slidePic21, 
+            bgColor: '#FFC869', textColor: '#FFC869', alt: 'Enterteiment Galore'},
           ],
       }
     },
@@ -193,6 +233,9 @@
     -ms-flex-direction: column;  
     flex-direction: column;
     margin-left: 24px;
+}
+.slide img{
+  aspect-ratio: 1.0;
 }
 
 .slider-controls-wrapper{

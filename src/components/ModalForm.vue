@@ -531,7 +531,7 @@ input:-webkit-autofill:focus
         padding: 0px 48px;
     }
     .modal__inputs{
-        padding: 20px 0px 0px;
+        padding: 20px 0px 10px;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
