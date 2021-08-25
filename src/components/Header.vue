@@ -173,6 +173,7 @@ export default {
 .menu__btn{
     width: 136px;
     font-size: 15px;
+    /*background: #9e8d70;*/
 }
 .header__hero{
     display: -webkit-box;
@@ -205,8 +206,8 @@ export default {
     line-height: 28px;
 }
 .header__btn{
-    width: 200px;
-    color: var(--text-color);
+    width: 140px;
+    font-size: 15px;
 }
 .mobileMenu{
     position: absolute;

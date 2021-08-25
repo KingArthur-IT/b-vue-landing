@@ -129,7 +129,7 @@
 }
 .icon-icn_arrow_left_hover:before {
   content: "\e900";
-  color: var(--secondary-color);
+  color: #fff;
   font-size: 11px;
   display: block;
 }
@@ -142,7 +142,7 @@
 }
 .icon-icn_arrow_right_hover:before {
   content: "\e901";
-  color: var(--secondary-color);
+  color: #fff;
   font-size: 11px;
   display: block;
 }

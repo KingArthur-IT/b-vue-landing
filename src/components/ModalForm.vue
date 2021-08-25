@@ -424,12 +424,15 @@ input:-webkit-autofill:focus
     background-image: url(${RadioDefauilt});
 }
 .modal__radio-group-item{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 .modal__radio-group label{
   margin-right: 40px;
@@ -443,13 +446,22 @@ input:-webkit-autofill:focus
   font-size: 20px;
   font-weight: 500;
   line-height: 28px;
-  padding: 25px auto;
+  padding: 25px 0;
   outline: none;
   border: none;
   min-height: 80px;
   width: 100%;
   margin-top: 40px;
   cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 .modal__signUp:hover{
   background: var(--secondary-hover-color);

@@ -123,7 +123,7 @@ export default {
           navItems: [
             'Building',
             'Apartments',
-            'Neighbornhood',
+            'Neighborhood',
             'Amenities',
             'Availability',
             'FAQ'
@@ -195,20 +195,29 @@ export default {
 }
 
 button{
-  appearance: none;
+  appearance: none;  
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .btn {
   font-family: 'Helvetica Neue Medium';
   font-weight: normal;
   text-align: center; 
-  cursor: pointer;
-  appearance: none;
+  cursor: pointer;  
   padding: 10px auto;
   min-height: 48px;
   background-color: var(--secondary-color);
   border-radius: 24px;
   border: none;  
+  color: var(--text-color);
 }
 .btn:hover{
     background-color: var(--secondary-hover-color);

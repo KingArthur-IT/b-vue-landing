@@ -69,6 +69,9 @@ th:last-child{
     text-align: right;
     font-family: 'Helvetica Neue Medium';
 }
+tr:last-child th{
+    border-bottom: none;
+}
 @media screen and (max-width: 1100px) {
     .building{
         padding: 120px 0px;
