@@ -436,6 +436,7 @@ input:-webkit-autofill:focus
 }
 .modal__radio-group label{
   margin-right: 40px;
+  padding-top: 1px;
 }
 .modal__signUp{
   position: absolute;
