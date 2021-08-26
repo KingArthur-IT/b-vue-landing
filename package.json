@@ -16,7 +16,8 @@
     "vue-js-modal": "^2.0.1",
     "vue-radio-toggle-buttons": "^0.1.0",
     "vue-slick-carousel": "^1.0.6",
-    "vue-transition-expand": "^0.1.0"
+    "vue-transition-expand": "^0.1.0",
+    "vue2-touch-events": "^3.2.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

@@ -4,6 +4,7 @@
         ref="carousel" 
         class="slider"
         :draggable=false
+        @afterChange="onChangeCarousel"
     >
         <img v-for="image in img" v-bind:key="image" :src="image" alt="" class="slide">
     </VueSlickCarousel>
@@ -64,6 +65,9 @@
       },
       hoverRight() {
         this.isHoverRight = !this.isHoverRight;       
+      },
+      onChangeCarousel(slideIndex){
+        this.slideNumber = slideIndex + 1;
       }
     },
     props: {

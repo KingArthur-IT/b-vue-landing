@@ -11,6 +11,8 @@
         class="slide-wrapper"
         v-for="item in sliderContent"
         v-bind:key="item.id"
+        v-touch:swipe.left="showNext"
+        v-touch:swipe.right="showPrev"
       >
         <div
           class="slide"
