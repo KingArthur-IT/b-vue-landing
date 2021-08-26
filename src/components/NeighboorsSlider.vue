@@ -233,7 +233,9 @@ export default {
           alt: "Enterteiment Galore",
         },
       ],
-      slideHeight: 0
+      slideHeight: 0,
+      windowWidth: 0,
+      windowHeight: 0
     };
   },
   methods: {
@@ -306,11 +308,14 @@ export default {
       return w * (this.slideNumber - 1);
     },
     resizeEvent() {
-      this.slideNumber = 1;
-      const slideAspectRatio = 1.5;
-      //let imgSlideWidth = window.innerWidth * 10.0 / this.getSlideTransform();
-      let imgSlideWidth = document.getElementsByClassName('slide__img')[0].getBoundingClientRect().width;
-      this.slideHeight = imgSlideWidth / slideAspectRatio;
+      if (this.windowWidth != window.innerWidth)
+      {
+        this.windowWidth = window.innerWidth;
+        this.slideNumber = 1;
+        const slideAspectRatio = 1.5;
+        let imgSlideWidth = document.getElementsByClassName('slide__img')[0].getBoundingClientRect().width;
+        this.slideHeight = imgSlideWidth / slideAspectRatio;
+      }
     },
   },
   created() {
@@ -320,6 +325,8 @@ export default {
     window.removeEventListener("resize", this.resizeEvent);
   },
   mounted(){
+    this.windowWidth = window.innerWidth;
+    this.windowHeight = window.innerHeight;
     const slideAspectRatio = 1.5;
     //let imgSlideWidth = window.innerWidth * 10.0 / this.getSlideTransform();
     let imgSlideWidth = document.getElementsByClassName('slide__img')[0].getBoundingClientRect().width;

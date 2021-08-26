@@ -249,10 +249,10 @@ export default {
     text-decoration: none;
     margin-bottom: 48px;
 }
-#vueBurger{
-    border: none;
-    outline: none;
-    appearance: none;
+#vueBurger, .vue-cool-burger{
+    border: none !important;
+    outline: none !important;
+    appearance: none !important;
 }
 @media screen and (max-width: 600px) {
     .header__title{
