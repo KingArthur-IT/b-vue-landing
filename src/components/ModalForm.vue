@@ -218,12 +218,13 @@ export default {
       return 700; //default
     },
     getModalHeight(){
-        if (window.innerWidth < 600)
-        return 520;
+      if (window.innerWidth < 600)
+        return window.innerHeight;
       if (window.innerWidth < 650)
         return 400;
       if (window.innerWidth < 800)
-        return 475;
+        return 475;    
+      
       return 580; //default
     },
     //methods for custom radio btns in modal form
@@ -540,19 +541,28 @@ input:-webkit-autofill:focus
     }
 }
 @media screen and (max-width: 600px) {
+  .modal__title{
+    padding-top: 16px;
+  }
     .modal__hero{
         padding: 0px 48px;
+        width: 100%;
     }
     .modal__inputs{
-        padding: 20px 0px 10px;
+        padding: 20px 0px 20px;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
+        width: 100%;
+    }
+    .input-wrapper{
+      width: 100%;
     }
     .modal__inputs input{
         min-width: 100px;
         margin-bottom: 26px;
+        width: 100%;
     }
     .inputName{  
         top: -12px;  

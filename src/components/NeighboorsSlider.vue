@@ -306,6 +306,7 @@ export default {
     resizeEvent() {
       this.slideNumber = 1;
       const slideAspectRatio = 1.5;
+      //let imgSlideWidth = window.innerWidth * 10.0 / this.getSlideTransform();
       let imgSlideWidth = document.getElementsByClassName('slide__img')[0].getBoundingClientRect().width;
       this.slideHeight = imgSlideWidth / slideAspectRatio;
     },
@@ -318,8 +319,11 @@ export default {
   },
   mounted(){
     const slideAspectRatio = 1.5;
+    //let imgSlideWidth = window.innerWidth * 10.0 / this.getSlideTransform();
     let imgSlideWidth = document.getElementsByClassName('slide__img')[0].getBoundingClientRect().width;
     this.slideHeight = imgSlideWidth / slideAspectRatio;
+    if ( window.innerWidth < 500)
+      this.slideHeight *= 1.95;
   }
 };
 </script>
@@ -365,7 +369,7 @@ export default {
   margin-left: 24px;
 }
 .slid__img {
-  aspect-ratio: 1.5;
+  /*aspect-ratio: 1.5;*/
 }
 
 .slider-controls-wrapper {
