@@ -351,9 +351,9 @@ input:-webkit-autofill:focus
   position: absolute;
   font-size: 0px;
   opacity: 0.8;
-  -webkit-transition: font-size 0.1s ease-in;
-  -o-transition: font-size 0.1s ease-in;
-  transition: font-size 0.1s ease-in;
+  -webkit-transition: font-size 0.3s ease-in;
+  -o-transition: font-size 0.3s ease-in;
+  transition: font-size 0.3s ease-in;
 }
 .inputFullSize{
   font-size: 12px;
@@ -565,7 +565,7 @@ input:-webkit-autofill:focus
         width: 100%;
     }
     .inputName{  
-        top: -12px;  
+        top: -16px;  
     }
     .modal__radio-group{
         display: block;
