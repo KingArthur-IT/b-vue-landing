@@ -249,6 +249,11 @@ export default {
     text-decoration: none;
     margin-bottom: 48px;
 }
+#vueBurger{
+    border: none;
+    outline: none;
+    appearance: none;
+}
 @media screen and (max-width: 600px) {
     .header__title{
         font-size: 50px;
